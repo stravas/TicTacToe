@@ -7,3 +7,12 @@ C:\Users\Stravas\Google Drive\Cousins Help\Adonis - School\Anwendungsentwicklung
 C:\Users\Stravas\Google Drive\Cousins Help\Adonis - School\Anwendungsentwicklung\2. Jahr\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.Cache
 C:\Users\Stravas\Google Drive\Cousins Help\Adonis - School\Anwendungsentwicklung\2. Jahr\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
 C:\Users\Stravas\Google Drive\Cousins Help\Adonis - School\Anwendungsentwicklung\2. Jahr\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe.config
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\obj\Debug\TicTacToe.exe
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\obj\Debug\TicTacToe.pdb
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\bin\Debug\TicTacToe.exe
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\bin\Debug\TicTacToe.pdb
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csprojResolveAssemblyReference.cache
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Form1.resources
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\obj\Debug\TicTacToe.Properties.Resources.resources
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe\TicTacToe\obj\Debug\TicTacToe.csproj.GenerateResource.Cache

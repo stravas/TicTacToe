@@ -71,6 +71,7 @@ namespace TicTacToe
             }
             else
             {
+                //check fuer Gleichstand
                 if (count == 9)
                     MessageBox.Show("Draw!");
             }

@@ -10,32 +10,41 @@ namespace TicTacToe_2._0
 {
     class Spielfeld
     {
-        Zelle[][] matrix = new Zelle[3][];
+        Zelle[,] matrix = new Zelle[3,3];
 
         public Spielfeld()
         {
+            this.matrix[0, 0] = new Zelle();
+            this.matrix[0, 1] = new Zelle();
+            this.matrix[0, 2] = new Zelle();
 
+            this.matrix[1, 0] = new Zelle();
+            this.matrix[1, 1] = new Zelle();
+            this.matrix[1, 2] = new Zelle();
+
+            this.matrix[2, 0] = new Zelle();
+            this.matrix[2, 1] = new Zelle();
+            this.matrix[2, 2] = new Zelle();
         }
 
-        private Zelle gebeZelleKoordinaten(Zelle zelle, int x, int y, int hoehe ,int breite)
+        private void gebeZelleKoordinaten(Zelle zelle, int x, int y, int breite ,int hoehe)
         {
-            zelle.x = x;
-            zelle.y = y;
-            zelle.hoehe = hoehe;
-            zelle.breite = breite;
-
-            return zelle;
+            zelle.Rectangle.X = x;
+            zelle.Rectangle.Y = y;
+            zelle.Rectangle.Height = hoehe;
+            zelle.Rectangle.Width = breite;
         }
 
-        private Zelle[][] berechneMatrix(int ClientWidth, int ClientHeight)
+        private Zelle[,] berechneMatrix(int ClientWidth, int ClientHeight)
         {
-            int zellenBreite = ClientWidth / 5;
-            int zellenHoehe = ClientHeight / 5;
-            for (int i = zellenBreite, x = 0; i <= ClientWidth - zellenBreite * 2; i += zellenBreite, x++)
+            int zellenBreite = ClientWidth / 6;
+            int zellenHoehe = ClientHeight / 6;
+            for (int i = zellenBreite, x = 0; x <= 2; i += zellenBreite, x++)
             {
-                for (int j = zellenHoehe, y = 0; j <= ClientHeight - zellenHoehe * 2; j += zellenHoehe, y++)
+                for (int j = zellenHoehe, y = 0; y <= 2; j += zellenHoehe, y++)
                 {
-                    matrix[x][y] = gebeZelleKoordinaten(matrix[x][y], i, j, zellenHoehe, zellenBreite);
+                    gebeZelleKoordinaten(matrix[x, y], i, j, zellenBreite, zellenHoehe);
+
                 }
             }
             return matrix;
@@ -43,13 +52,16 @@ namespace TicTacToe_2._0
         public void zeichneSpielfeld(Graphics g,  int ClientWidth, int ClientHeight)
         {
            Pen blackPen = new Pen(Color.Black);
+           SolidBrush brush = new SolidBrush(Color.DarkRed);
             matrix = berechneMatrix(ClientWidth, ClientHeight); 
-            for (int x = 0;x < 3; x++)
+            for (int x = 0;x <= 2; x++)
             {    
-                for (int y = 0; y < 3; y++)
+                for (int y = 0; y <= 2; y++)
                 {
-                  g.DrawRectangle(blackPen, matrix[x][y].x, matrix[x][y].y, matrix[x][y].hoehe, matrix[x][y].breite);
-              
+                    Rectangle rect = matrix[x, y].Rectangle;
+                    g.FillRectangle(brush, rect);
+                    g.DrawRectangle(blackPen, rect);
+
                 }
             }
 

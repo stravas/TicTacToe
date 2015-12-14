@@ -20,23 +20,31 @@ namespace TicTacToe_2._0
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void FormLoad(object sender, EventArgs e)
         {
             this.ResizeRedraw = true;
             this.DoubleBuffered = true;
+            this.MinimumSize = new System.Drawing.Size(300, 300);
+            panel1.AutoSize = true;
+            panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
+
+
+
+            //Spielfeld
             this.spielfeld = new Spielfeld();
-            this.Paint += new PaintEventHandler(FormPaint);
+            this.Paint += new PaintEventHandler(ResizeFormPaint);
             this.MouseClick += new MouseEventHandler(MouseOnFormClick);
         }
 
 
-        private void FormPaint(object sender, PaintEventArgs e)
+        private void ResizeFormPaint(object sender, PaintEventArgs e)
         {
             spielfeld.zeichneSpielfeld(e.Graphics, this.ClientSize.Width, this.ClientSize.Height);
         }
-
         private void MouseOnFormClick(object sender, MouseEventArgs e)
         {
             Zelle zelle = spielfeld.welcheZelle(e.Location);
@@ -71,6 +79,19 @@ namespace TicTacToe_2._0
 
         }
 
+        public void SpielerEintrag()
+        {
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = false;
+            int count = panel1.Controls.Count;
+            string test1 = textBox1.Text;
+            string test2 = textBox2.Text;
+        }
 
     }
 }

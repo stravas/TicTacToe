@@ -58,6 +58,9 @@
     <Compile Include="Spielfeld.cs" />
     <Compile Include="Spielsteuerung.cs" />
     <Compile Include="Zelle.cs" />
+    <EmbeddedResource Include="Oberflaechensteuerung.resx">
+      <DependentUpon>Oberflaechensteuerung.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -10,15 +10,19 @@ namespace TicTacToe_2._0
     class Zelle
     {
 
+        public SolidBrush zellBrush = new SolidBrush(Color.White);
+
         public Zelle()
         {
 
             this.Rectangle = new Rectangle();
+            this.Spieler = new Spieler();
 
         }
 
         public Rectangle Rectangle;
         private Spieler _Spieler;
+        public bool geklickt = false;
 
         public Spieler Spieler
         {
@@ -27,6 +31,8 @@ namespace TicTacToe_2._0
             //hole Spieler
             get { return this._Spieler; }
         }
+
+
 
         //TODO: setDimensionRectangle
     }

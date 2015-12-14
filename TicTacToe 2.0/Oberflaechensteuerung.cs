@@ -12,10 +12,10 @@ namespace TicTacToe_2._0
 {
     public partial class Form1 : Form
     {
-       
-        private Spielfeld spielfeld = null;
-        private Spielsteuerung spielsteuerung;
 
+        private Spielfeld spielfeld = null;
+        private Spielsteuerung spielsteuerung = new Spielsteuerung();
+        int rundenZaehler = 1;
 
         public Form1()
         {
@@ -39,8 +39,38 @@ namespace TicTacToe_2._0
 
         private void MouseOnFormClick(object sender, MouseEventArgs e)
         {
-            
+            Zelle zelle = spielfeld.welcheZelle(e.Location);
+
+            if (zelle != null && zelle.geklickt == false)
+            {
+                spielsteuerung.welcherSpieler(zelle);
+                this.Refresh();
+
+                if (rundenZaehler < 9)
+                {
+                    if (spielsteuerung.check_for_winner(spielfeld.matrix) == true)
+                    {
+                        MessageBox.Show(String.Format("Gewonnen hat Spieler {0}", zelle.Spieler.Name));
+                        this.spielfeld.feldReset();
+                        this.Refresh();
+
+                    }
+                    rundenZaehler++;
+
+                }
+                else
+                {
+                    MessageBox.Show("Unentschieden!!");
+                    this.spielfeld.feldReset();
+                    rundenZaehler = 1;
+                    this.Refresh();
+                }
+
+            }
+
+
         }
+
 
     }
 }

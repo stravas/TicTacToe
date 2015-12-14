@@ -2,16 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace TicTacToe_2._0
 {
     class Spielsteuerung
     {
-        private bool _Turn;
+        private bool _Turn = true;
 
         public int count;
 
+        public Spielsteuerung()
+        {
+            spielerEins = new Spieler();
+            spielerEins.Priorität = 1;
+            spielerEins.zellBrush = new SolidBrush(Color.Green);
+            spielerEins.Name = "Fabio";
+
+            spielerZwei = new Spieler();
+            spielerZwei.Priorität = 2;
+            spielerZwei.zellBrush = new SolidBrush(Color.Red);
+            spielerZwei.Name = "Adonis";
+        }
+
+        public Spieler spielerEins;
+        public Spieler spielerZwei;
 
         public bool Turn
         {
@@ -22,52 +38,82 @@ namespace TicTacToe_2._0
         }
 
 
-        private void check_for_winner(Zelle matrix)
+        public bool check_for_winner(Zelle[,] matrix)
         {
-            /*        bool has_win = false;
+            bool has_win = false;
+           // int count
 
-                    //horizontale checks
-                    if ((button1.Text == button2.Text) && (button2.Text == button3.Text) && (!button1.Enabled))
-                        has_win = true;
-                    else if ((button4.Text == button5.Text) && (button5.Text == button6.Text) && (!button4.Enabled))
-                        has_win = true;
-                    else if ((button7.Text == button8.Text) && (button8.Text == button9.Text) && (!button7.Enabled))
-                        has_win = true;
 
-                    //vertikale checks
-                    else if ((button1.Text == button4.Text) && (button4.Text == button7.Text) && (!button1.Enabled))
-                        has_win = true;
-                    else if ((button2.Text == button8.Text) && (button5.Text == button8.Text) && (!button2.Enabled))
-                        has_win = true;
-                    else if ((button3.Text == button6.Text) && (button6.Text == button9.Text) && (!button3.Enabled))
-                        has_win = true;
 
-                    //diagonale checks
-                    else if ((button1.Text == button5.Text) && (button5.Text == button9.Text) && (!button1.Enabled))
-                        has_win = true;
-                    else if ((button7.Text == button5.Text) && (button5.Text == button3.Text) && (!button7.Enabled))
-                        has_win = true;
+             //horizontale checks
+             if ((matrix[0, 0].Spieler.Priorität == matrix[0, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität == matrix[0, 2].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
+                 has_win = true;
+             else if ((matrix[1, 0].Spieler.Priorität == matrix[1, 1].Spieler.Priorität) && (matrix[1, 1].Spieler.Priorität == matrix[1, 2].Spieler.Priorität) && (matrix[1, 0].Spieler.Priorität != 0))
+                 has_win = true;
+             else if ((matrix[2, 0].Spieler.Priorität == matrix[2, 1].Spieler.Priorität) && (matrix[2, 1].Spieler.Priorität == matrix[2, 2].Spieler.Priorität) && (matrix[2, 0].Spieler.Priorität != 0))
+                 has_win = true;
 
-                    if (has_win)
-                    {
-                        resetButtons();
-                        string winner = "";
-                        if (turn)
-                            winner = "O";
-                        else
-                            winner = "X";
-                        MessageBox.Show("Winner is " + winner);
-                    }
-                    else
-                    {
-                        //check fuer Gleichstand
-                        if (count == 9)
-                            MessageBox.Show("Draw!");
-                    }
+             //vertikale checks
+             else if ((matrix[0, 0].Spieler.Priorität == matrix[1, 0].Spieler.Priorität) && (matrix[1, 0].Spieler.Priorität == matrix[2, 0].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
+                 has_win = true;
+             else if ((matrix[0, 1].Spieler.Priorität == matrix[1, 1].Spieler.Priorität) && (matrix[1, 1].Spieler.Priorität == matrix[2, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität != 0))
+                 has_win = true;
+             else if ((matrix[0, 2].Spieler.Priorität == matrix[1, 2].Spieler.Priorität) && (matrix[1, 2].Spieler.Priorität == matrix[2, 2].Spieler.Priorität) && (matrix[0, 2].Spieler.Priorität != 0))
+                 has_win = true;
 
-                }
+            //diagonale checks
+            if ((matrix[0, 0].Spieler == matrix[1, 1].Spieler) && (matrix[1, 1].Spieler == matrix[2, 2].Spieler) && (matrix[0, 0].Spieler.Priorität != 0))
+                has_win = true;
+            else if ((matrix[0, 2].Spieler == matrix[1, 1].Spieler) && (matrix[1, 1].Spieler == matrix[2, 0].Spieler) && (matrix[0, 2].Spieler.Priorität != 0))
+                has_win = true;
 
-                public void resetButtons()*/
+
+            /* for (int x = 0; x <= 2; x++)
+           {
+               for (int y = 0; y <= 2; y++)
+               {
+                   if ((matrix[x, y].Spieler == matrix[x, y].Spieler) && (matrix[x, y].Spieler == matrix[x, y].Spieler)
+                       || (matrix[y, x].Spieler == matrix[y, x].Spieler) && (matrix[y, x].Spieler == matrix[y, x].Spieler))
+                   {
+                       return ;
+                   }
+
+               }
+           }*/
+
+            //check fuer Gleichstand
+            /*if (count == 9)
+                MessageBox.Show("Draw!");
+            return true;*/
+
+
+            return has_win;
+        }
+
+        public void welcherSpieler(Zelle zelle)
+        {
+            zelle.geklickt = true;
+
+            if (Turn)
+            {
+                zelle.Spieler = this.spielerEins;
+                zelle.zellBrush.Color = this.spielerEins.zellBrush.Color;
+            }
+
+            else
+            {
+                zelle.Spieler = this.spielerZwei;
+                zelle.zellBrush.Color = this.spielerZwei.zellBrush.Color;
+            }
+
+
+            Turn = !Turn;
+
+        }
+
+        public void resetButtons()
+        {
+
         }
     }
 }

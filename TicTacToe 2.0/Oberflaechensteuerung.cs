@@ -32,8 +32,6 @@ namespace TicTacToe_2._0
             panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
 
-
-
             //Spielfeld
             this.spielfeld = new Spielfeld();
             this.Paint += new PaintEventHandler(ResizeFormPaint);
@@ -60,6 +58,7 @@ namespace TicTacToe_2._0
                     {
                         MessageBox.Show(String.Format("Gewonnen hat Spieler {0}", zelle.Spieler.Name));
                         this.spielfeld.feldReset();
+                        rundenZaehler = 0;
                         this.Refresh();
 
                     }
@@ -87,10 +86,20 @@ namespace TicTacToe_2._0
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.spielsteuerung.spielerEins.Name = textBox1.Text;
+            this.spielsteuerung.spielerZwei.Name = textBox2.Text;
+
+            if (String.IsNullOrEmpty(this.spielsteuerung.spielerEins.Name))
+            {
+                this.spielsteuerung.spielerEins.Name = "Spieler1";
+            }
+
+            if (String.IsNullOrEmpty(this.spielsteuerung.spielerZwei.Name))
+            {
+                this.spielsteuerung.spielerZwei.Name = "Spieler2";
+            }
+
             panel1.Visible = false;
-            int count = panel1.Controls.Count;
-            string test1 = textBox1.Text;
-            string test2 = textBox2.Text;
         }
 
     }

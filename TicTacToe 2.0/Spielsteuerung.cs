@@ -18,12 +18,12 @@ namespace TicTacToe_2._0
             spielerEins = new Spieler();
             spielerEins.Priorität = 1;
             spielerEins.zellBrush = new SolidBrush(Color.Green);
-            spielerEins.Name = "Fabio";
+            spielerEins.Name = "s1";
 
             spielerZwei = new Spieler();
             spielerZwei.Priorität = 2;
             spielerZwei.zellBrush = new SolidBrush(Color.Red);
-            spielerZwei.Name = "Adonis";
+            spielerZwei.Name = "s2";
         }
 
         public Spieler spielerEins;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace TicTacToe_2._0
@@ -52,7 +53,7 @@ namespace TicTacToe_2._0
 
         public void zeichneSpielfeld(Graphics g,  int ClientWidth, int ClientHeight)
         {
-           Pen blackPen = new Pen(Color.Black);
+           Pen blackPen = new Pen(Color.Black, 8.0F);
        //    SolidBrush zellBrush = new SolidBrush(Color.DarkRed);
             matrix = berechneMatrix(ClientWidth, ClientHeight);
             for (int x = 0;x <= 2; x++)
@@ -60,7 +61,9 @@ namespace TicTacToe_2._0
                 for (int y = 0; y <= 2; y++)
                 {
                     Zelle zelle = matrix[x, y];
+                    RectangleGeometry rectangle = new RectangleGeometry();
                     g.FillRectangle(zelle.zellBrush, zelle.Rectangle);
+                    g.DrawLines(blackPen, zelle.Rectangle.Bottom23);
                     g.DrawRectangle(blackPen, zelle.Rectangle);
 
                 }

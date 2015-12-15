@@ -14,3 +14,4 @@ C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe 2.0\TicTacToe 2.0\bin
 C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe 2.0\TicTacToe 2.0\obj\Debug\TicTacToe_2._0.Properties.Resources.resources
 C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe 2.0\TicTacToe 2.0\obj\Debug\TicTacToe 2.0.csproj.GenerateResource.Cache
 C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe 2.0\TicTacToe 2.0\obj\Debug\TicTacToe 2.0.csprojResolveAssemblyReference.cache
+C:\Users\Stravas\Documents\Visualstudio Projects\TicTacToe 2.0\TicTacToe 2.0\obj\Debug\TicTacToe_2._0.Form1.resources

@@ -61,9 +61,7 @@ namespace TicTacToe_2._0
                 for (int y = 0; y <= 2; y++)
                 {
                     Zelle zelle = matrix[x, y];
-                    RectangleGeometry rectangle = new RectangleGeometry();
                     g.FillRectangle(zelle.zellBrush, zelle.Rectangle);
-                    g.DrawLines(blackPen, zelle.Rectangle.Bottom23);
                     g.DrawRectangle(blackPen, zelle.Rectangle);
 
                 }

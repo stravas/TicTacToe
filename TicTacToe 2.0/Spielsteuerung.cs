@@ -10,7 +10,7 @@ namespace TicTacToe_2._0
     class Spielsteuerung
     {
         public bool Runde = true;
-        public int count;
+        int RundenZaehler = 1;
         public Spieler SpielerEins;
         public Spieler SpielerZwei;
 
@@ -30,23 +30,23 @@ namespace TicTacToe_2._0
         public bool gewinnerPruefung(Zelle[,] matrix)
         {
             bool Gewonnen = false;
-           // int count
+            // int count
 
-             //horizontale checks
-             if ((matrix[0, 0].Spieler.Priorität == matrix[0, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität == matrix[0, 2].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
-                 Gewonnen = true;
-             else if ((matrix[1, 0].Spieler.Priorität == matrix[1, 1].Spieler.Priorität) && (matrix[1, 1].Spieler.Priorität == matrix[1, 2].Spieler.Priorität) && (matrix[1, 0].Spieler.Priorität != 0))
-                 Gewonnen = true;
-             else if ((matrix[2, 0].Spieler.Priorität == matrix[2, 1].Spieler.Priorität) && (matrix[2, 1].Spieler.Priorität == matrix[2, 2].Spieler.Priorität) && (matrix[2, 0].Spieler.Priorität != 0))
-                 Gewonnen = true;
+            //horizontale checks
+            if ((matrix[0, 0].Spieler.Priorität == matrix[0, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität == matrix[0, 2].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
+                Gewonnen = true;
+            else if ((matrix[1, 0].Spieler.Priorität == matrix[1, 1].Spieler.Priorität) && (matrix[1, 1].Spieler.Priorität == matrix[1, 2].Spieler.Priorität) && (matrix[1, 0].Spieler.Priorität != 0))
+                Gewonnen = true;
+            else if ((matrix[2, 0].Spieler.Priorität == matrix[2, 1].Spieler.Priorität) && (matrix[2, 1].Spieler.Priorität == matrix[2, 2].Spieler.Priorität) && (matrix[2, 0].Spieler.Priorität != 0))
+                Gewonnen = true;
 
-             //vertikale checks
-             else if ((matrix[0, 0].Spieler.Priorität == matrix[1, 0].Spieler.Priorität) && (matrix[1, 0].Spieler.Priorität == matrix[2, 0].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
-                 Gewonnen = true;
-             else if ((matrix[0, 1].Spieler.Priorität == matrix[1, 1].Spieler.Priorität) && (matrix[1, 1].Spieler.Priorität == matrix[2, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität != 0))
-                 Gewonnen = true;
-             else if ((matrix[0, 2].Spieler.Priorität == matrix[1, 2].Spieler.Priorität) && (matrix[1, 2].Spieler.Priorität == matrix[2, 2].Spieler.Priorität) && (matrix[0, 2].Spieler.Priorität != 0))
-                 Gewonnen = true;
+            //vertikale checks
+            else if ((matrix[0, 0].Spieler.Priorität == matrix[1, 0].Spieler.Priorität) && (matrix[1, 0].Spieler.Priorität == matrix[2, 0].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
+                Gewonnen = true;
+            else if ((matrix[0, 1].Spieler.Priorität == matrix[1, 1].Spieler.Priorität) && (matrix[1, 1].Spieler.Priorität == matrix[2, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität != 0))
+                Gewonnen = true;
+            else if ((matrix[0, 2].Spieler.Priorität == matrix[1, 2].Spieler.Priorität) && (matrix[1, 2].Spieler.Priorität == matrix[2, 2].Spieler.Priorität) && (matrix[0, 2].Spieler.Priorität != 0))
+                Gewonnen = true;
 
             //diagonale checks
             if ((matrix[0, 0].Spieler == matrix[1, 1].Spieler) && (matrix[1, 1].Spieler == matrix[2, 2].Spieler) && (matrix[0, 0].Spieler.Priorität != 0))
@@ -97,6 +97,50 @@ namespace TicTacToe_2._0
             Runde = !Runde;
 
         }
-        
+
+        public string[] rundenChecker(Zelle zelle, Spielfeld spielfeld)
+        {
+            string[] RückgabeArray = { "false", "error", "error"};
+
+            if (zelle != null && zelle.geklickt == false)
+            {
+                this.welcherSpieler(zelle);
+
+                if (RundenZaehler < 9)
+                {
+                    if (this.gewinnerPruefung(spielfeld.Matrix) == true)
+                    {
+                        //Hier wird zu früh resetet LETZTES FELD WIRD NICHT ANGEZEIGT
+                        spielfeld.feldReset();
+                        RundenZaehler = 0;
+
+                        RückgabeArray[0] = "true";
+                        RückgabeArray[1] = "Sieg";
+                        RückgabeArray[2] = zelle.Spieler.Name;
+
+                        return RückgabeArray;
+                    }
+                    RundenZaehler++;
+                    
+                }
+                else
+                {
+                    //MessageBox.Show("Unentschieden!!");
+                    spielfeld.feldReset();
+                    RundenZaehler = 1;
+
+                    RückgabeArray[0] = "true";
+                    RückgabeArray[1] = "Unentschieden";
+
+                    return RückgabeArray;
+
+                }
+            }
+            return RückgabeArray;
+        }
+
+
+
+
     }
 }

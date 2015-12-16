@@ -15,7 +15,7 @@ namespace TicTacToe_2._0
 
         private Spielfeld Spielfeld = null;
         private Spielsteuerung Spielsteuerung = new Spielsteuerung();
-        int RundenZaehler = 1;
+        
 
         public Form1()
         {
@@ -45,36 +45,17 @@ namespace TicTacToe_2._0
         {
             Zelle zelle = Spielfeld.welcheZelle(e.Location);
 
-            if (zelle != null && zelle.geklickt == false)
-            {
-                Spielsteuerung.welcherSpieler(zelle);
-                this.Refresh();
+            string[] RückgabeArray = new string[3];
 
-                if (RundenZaehler < 9)
-                {
-                    if (Spielsteuerung.gewinnerPruefung(Spielfeld.Matrix) == true)
-                    {
-                        MessageBox.Show(String.Format("Gewonnen hat Spieler {0}", zelle.Spieler.Name));
-                        this.Spielfeld.feldReset();
-                        RundenZaehler = 0;
-                        this.Refresh();
+            RückgabeArray = Spielsteuerung.rundenChecker(zelle, Spielfeld);
 
-                    }
-                    RundenZaehler++;
-
-                }
-                else
-                {
-                    MessageBox.Show("Unentschieden!!");
-                    this.Spielfeld.feldReset();
-                    RundenZaehler = 1;
-                    this.Refresh();
-                }
-
-            }
+            //Diese Funktion Wertet die Ergebnisse der Funktion rundenChecker aus und gibt dann die View Weiter
+            this.auswertungRundenChecker(RückgabeArray);
+            this.Refresh();
 
 
         }
+
         private void spielStart_button1_Click(object sender, EventArgs e)
         {
             this.Spielsteuerung.SpielerEins.Name = textBox1.Text;
@@ -111,5 +92,21 @@ namespace TicTacToe_2._0
             this.Spielfeld.feldReset();
             panel1.Visible = true;
         }
+        private void auswertungRundenChecker(string [] SpielDatenArray)
+        {
+            if (SpielDatenArray[0] == "true")
+            {
+                if(SpielDatenArray[1] == "Sieg")
+                {
+                    MessageBox.Show(String.Format("Gewonnen hat Spieler {0}", SpielDatenArray[2]));
+                } else
+                {
+                    MessageBox.Show("Unentschieden!");
+                }
+            }
+
+        }
+
+
     }
 }

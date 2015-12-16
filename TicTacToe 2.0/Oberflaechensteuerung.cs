@@ -28,9 +28,10 @@ namespace TicTacToe_2._0
             this.ResizeRedraw = true;
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(300, 300);
-            //panel1.AutoSize = true;
-            //panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            this.momentanerSpieler.Visible = false;
+
+            //hintergrund von dem startPanel auf alle andere Panels und auf die Form übertragen
+            this.hintergrundPanel.BackColor = this.startPanel.BackColor;
+            this.BackColor = this.startPanel.BackColor;
 
 
             //Spielfeld
@@ -42,6 +43,7 @@ namespace TicTacToe_2._0
         {
             automatischeRegulierungDerFontGrose();
             Spielfeld.zeichneSpielfeld(e.Graphics, this.ClientSize.Width, this.ClientSize.Height);
+            automatischeRegilerungDerLabelMitteInEinemPanel();
 
         }
 
@@ -79,7 +81,7 @@ namespace TicTacToe_2._0
 
             this.setzeErstenSpielerNameImLabelMomentanerSpieler();
             this.momentanerSpieler.Visible = true;
-            panel1.Visible = false;
+            startPanel.Visible = false;
             hintergrundPanel.Visible = false;
             //hintergrundPanel.Visible = false;
         }
@@ -100,8 +102,9 @@ namespace TicTacToe_2._0
         }
         private void neuesSpiel_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.resultatPanel.Visible = false;
             this.Spielfeld.feldReset();
-            panel1.Visible = true;
+            startPanel.Visible = true;
             hintergrundPanel.Visible = true;
             this.momentanerSpieler.Visible = false;
             //hintergrundPanel.Visible = true;
@@ -112,14 +115,20 @@ namespace TicTacToe_2._0
             this.Refresh();
             if (SpielDatenArray[0] == "true")
             {
-                if(SpielDatenArray[1] == "Sieg")
+                this.resultatPanel.Visible = true;
+                momentanerSpieler.Visible = false;
+
+                if (SpielDatenArray[1] == "Sieg")
                 {
-                    MessageBox.Show(String.Format("Gewonnen hat Spieler {0}", SpielDatenArray[2]));
-                } else
-                {
-                    MessageBox.Show("Unentschieden!");
+                    string resultat = String.Format("Gewonnen hat Spieler: {0}", SpielDatenArray[2]);
+                    this.resultatLabel.Text = resultat;
+
                 }
-                this.Spielfeld.feldReset();
+                else
+                {
+                    this.resultatLabel.Text = "unentschieden!";
+                }
+
             }
 
         }
@@ -153,6 +162,17 @@ namespace TicTacToe_2._0
            this.momentanerSpieler.Font = new Font("Impact", fontGroese);
 
         }
+        public void automatischeRegilerungDerLabelMitteInEinemPanel()
+        {
+            resultatLabel.Width = this.Width / 2 - resultatLabel.Width / 2 - resultatLabel.Text.Length / 2;
+        }
 
+        private void neueRunde_Click(object sender, EventArgs e)
+        {
+            this.Spielfeld.feldReset();
+            resultatPanel.Visible = false;
+            momentanerSpieler.Visible = true;
+            this.Refresh();
+        }
     }
 }

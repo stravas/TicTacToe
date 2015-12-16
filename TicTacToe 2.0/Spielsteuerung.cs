@@ -111,8 +111,8 @@ namespace TicTacToe_2._0
                     if (this.gewinnerPruefung(spielfeld.Matrix) == true)
                     {
                         //Hier wird zu früh resetet LETZTES FELD WIRD NICHT ANGEZEIGT
-                        spielfeld.feldReset();
-                        RundenZaehler = 0;
+
+                        RundenZaehler = 1;
 
                         RückgabeArray[0] = "true";
                         RückgabeArray[1] = "Sieg";
@@ -121,12 +121,12 @@ namespace TicTacToe_2._0
                         return RückgabeArray;
                     }
                     RundenZaehler++;
-                    
+
                 }
                 else
                 {
                     //MessageBox.Show("Unentschieden!!");
-                    spielfeld.feldReset();
+
                     RundenZaehler = 1;
 
                     RückgabeArray[0] = "true";

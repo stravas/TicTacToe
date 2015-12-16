@@ -15,7 +15,7 @@ namespace TicTacToe_2._0
 
         private Spielfeld Spielfeld = null;
         private Spielsteuerung Spielsteuerung = new Spielsteuerung();
-        
+
 
         public Form1()
         {
@@ -30,7 +30,7 @@ namespace TicTacToe_2._0
             this.MinimumSize = new System.Drawing.Size(300, 300);
             //panel1.AutoSize = true;
             //panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            
+
 
             //Spielfeld
             this.Spielfeld = new Spielfeld();
@@ -94,6 +94,7 @@ namespace TicTacToe_2._0
         }
         private void auswertungRundenChecker(string [] SpielDatenArray)
         {
+            this.Refresh();
             if (SpielDatenArray[0] == "true")
             {
                 if(SpielDatenArray[1] == "Sieg")
@@ -103,6 +104,7 @@ namespace TicTacToe_2._0
                 {
                     MessageBox.Show("Unentschieden!");
                 }
+                this.Spielfeld.feldReset();
             }
 
         }

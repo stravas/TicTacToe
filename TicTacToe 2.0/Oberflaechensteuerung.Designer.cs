@@ -74,7 +74,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Spiel Starten";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.spielStart_button1_Click);
             // 
             // panel1
             // 
@@ -170,14 +170,14 @@
             this.neuesSpielToolStripMenuItem.Name = "neuesSpielToolStripMenuItem";
             this.neuesSpielToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.neuesSpielToolStripMenuItem.Text = "Neues Spiel";
-            this.neuesSpielToolStripMenuItem.Click += new System.EventHandler(this.neuesSpielToolStripMenuItem_Click);
+            this.neuesSpielToolStripMenuItem.Click += new System.EventHandler(this.neuesSpiel_ToolStripMenuItem_Click);
             // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
             this.beendenToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
-            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beenden_ToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 

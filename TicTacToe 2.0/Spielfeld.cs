@@ -11,29 +11,29 @@ namespace TicTacToe_2._0
 {
     class Spielfeld
     {
-        public Zelle[,] matrix = new Zelle[3,3];
+        public Zelle[,] Matrix = new Zelle[3,3];
 
         public Spielfeld()
         {
-            this.matrix[0, 0] = new Zelle();
-            this.matrix[0, 1] = new Zelle();
-            this.matrix[0, 2] = new Zelle();
+            this.Matrix[0, 0] = new Zelle();
+            this.Matrix[0, 1] = new Zelle();
+            this.Matrix[0, 2] = new Zelle();
 
-            this.matrix[1, 0] = new Zelle();
-            this.matrix[1, 1] = new Zelle();
-            this.matrix[1, 2] = new Zelle();
+            this.Matrix[1, 0] = new Zelle();
+            this.Matrix[1, 1] = new Zelle();
+            this.Matrix[1, 2] = new Zelle();
 
-            this.matrix[2, 0] = new Zelle();
-            this.matrix[2, 1] = new Zelle();
-            this.matrix[2, 2] = new Zelle();
+            this.Matrix[2, 0] = new Zelle();
+            this.Matrix[2, 1] = new Zelle();
+            this.Matrix[2, 2] = new Zelle();
         }
 
-        private void gebeZelleKoordinaten(Zelle zelle, int x, int y, int breite ,int hoehe)
+        private void gebeZelleKoordinaten(Zelle Zelle, int x, int y, int breite ,int hoehe)
         {
-            zelle.Rectangle.X = x;
-            zelle.Rectangle.Y = y;
-            zelle.Rectangle.Height = hoehe;
-            zelle.Rectangle.Width = breite;
+            Zelle.Rectangle.X = x;
+            Zelle.Rectangle.Y = y;
+            Zelle.Rectangle.Height = hoehe;
+            Zelle.Rectangle.Width = breite;
         }
 
         private Zelle[,] berechneMatrix(int ClientWidth, int ClientHeight)
@@ -45,25 +45,25 @@ namespace TicTacToe_2._0
             {
                 for (int j = zellenHoehe, y = 0; y <= 2; j += zellenHoehe, y++)
                 {
-                    gebeZelleKoordinaten(matrix[x, y], i, j, zellenBreite, zellenHoehe);
+                    gebeZelleKoordinaten(Matrix[x, y], i, j, zellenBreite, zellenHoehe);
 
                 }
             }
-            return matrix;
+            return Matrix;
         }
 
         public void zeichneSpielfeld(Graphics g,  int ClientWidth, int ClientHeight)
         {
-           Pen blackPen = new Pen(Color.Black, 8.0F);
-       //    SolidBrush zellBrush = new SolidBrush(Color.DarkRed);
-            matrix = berechneMatrix(ClientWidth, ClientHeight);
+            Pen blackPen = new Pen(Color.Black, 8.0F);
+            //SolidBrush ZellenPinsel = new SolidBrush(Color.DarkRed);
+            Matrix = berechneMatrix(ClientWidth, ClientHeight);
             for (int x = 0;x <= 2; x++)
             {
                 for (int y = 0; y <= 2; y++)
                 {
-                    Zelle zelle = matrix[x, y];
+                    Zelle zelle = Matrix[x, y];
                     
-                    g.FillRectangle(zelle.zellBrush, zelle.Rectangle);
+                    g.FillRectangle(zelle.StandardZellenPinsel, zelle.Rectangle);
                     g.DrawRectangle(blackPen, zelle.Rectangle);
 
                 }
@@ -73,7 +73,7 @@ namespace TicTacToe_2._0
 
         public Zelle welcheZelle(Point location)
         {
-            foreach (Zelle zelle in this.matrix)
+            foreach (Zelle zelle in this.Matrix)
             {
                 if(zelle.Rectangle.Contains(location) == true)
                 {
@@ -85,17 +85,17 @@ namespace TicTacToe_2._0
 
         public void feldReset()
         {
-            this.matrix[0, 0] = new Zelle();
-            this.matrix[0, 1] = new Zelle();
-            this.matrix[0, 2] = new Zelle();
+            this.Matrix[0, 0] = new Zelle();
+            this.Matrix[0, 1] = new Zelle();
+            this.Matrix[0, 2] = new Zelle();
 
-            this.matrix[1, 0] = new Zelle();
-            this.matrix[1, 1] = new Zelle();
-            this.matrix[1, 2] = new Zelle();
+            this.Matrix[1, 0] = new Zelle();
+            this.Matrix[1, 1] = new Zelle();
+            this.Matrix[1, 2] = new Zelle();
 
-            this.matrix[2, 0] = new Zelle();
-            this.matrix[2, 1] = new Zelle();
-            this.matrix[2, 2] = new Zelle();
+            this.Matrix[2, 0] = new Zelle();
+            this.Matrix[2, 1] = new Zelle();
+            this.Matrix[2, 2] = new Zelle();
 
         }
     }

@@ -14,20 +14,8 @@ namespace TicTacToe_2._0
         }
 
         public string Name;
-        public SolidBrush zellBrush = new SolidBrush(Color.White);
+        public SolidBrush ZellenPinsel = new SolidBrush(Color.White);
         public int Priorität = 0;
 
-
-
-
-        /**
-        public Color Farbe
-        {
-            //set the person name
-            set { this._Farbe = value; }
-            //get the person name
-            get { return this._Farbe; }
-        }
-        **/
     }
 }

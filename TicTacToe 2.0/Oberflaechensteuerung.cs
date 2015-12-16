@@ -30,6 +30,11 @@ namespace TicTacToe_2._0
             this.MinimumSize = new System.Drawing.Size(300, 300);
             panel1.AutoSize = true;
             panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panel2.AutoSize = true;
+
+            //Panel 2 Sieger Panel
+            panel2.Visible = false;
+            label3.Visible = false;
 
 
             //Spielfeld
@@ -49,14 +54,30 @@ namespace TicTacToe_2._0
 
             if (zelle != null && zelle.geklickt == false)
             {
-                spielsteuerung.welcherSpieler(zelle);
+                int spielerPriorität = spielsteuerung.welcherSpieler(zelle);
+
+                if(spielerPriorität == 1)
+                {
+                    this.label3.Text = spielsteuerung.spielerEins.Name;
+
+                } else if (spielerPriorität == 2)
+                {
+                    this.label3.Text = spielsteuerung.spielerZwei.Name;
+                }
+
                 this.Refresh();
 
                 if (rundenZaehler < 9)
                 {
+
                     if (spielsteuerung.check_for_winner(spielfeld.matrix) == true)
                     {
-                        MessageBox.Show(String.Format("Gewonnen hat Spieler {0}", zelle.Spieler.Name));
+                        // MessageBox.Show(String.Format("Gewonnen hat Spieler {0}", zelle.Spieler.Name));
+
+                        this.panel2.Visible = true;
+
+                        this.label4.Text = "Gewonnen hat Spieler";
+                        this.label5.Text = zelle.Spieler.Name;
                         this.spielfeld.feldReset();
                         rundenZaehler = 0;
                         this.Refresh();
@@ -78,12 +99,6 @@ namespace TicTacToe_2._0
 
         }
 
-        public void SpielerEintrag()
-        {
-
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.spielsteuerung.spielerEins.Name = textBox1.Text;
@@ -99,8 +114,18 @@ namespace TicTacToe_2._0
                 this.spielsteuerung.spielerZwei.Name = "Spieler2";
             }
 
+            this.label3.Text = this.spielsteuerung.spielerEins.Name;
             panel1.Visible = false;
+            label3.Visible = true;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.panel2.Visible = false;
+            this.spielfeld.feldReset();
+            rundenZaehler = 0;
+            this.Refresh();
+
+        }
     }
 }

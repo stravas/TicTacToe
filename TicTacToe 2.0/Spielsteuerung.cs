@@ -90,7 +90,7 @@ namespace TicTacToe_2._0
             return has_win;
         }
 
-        public void welcherSpieler(Zelle zelle)
+        public int welcherSpieler(Zelle zelle)
         {
             zelle.geklickt = true;
 
@@ -98,16 +98,20 @@ namespace TicTacToe_2._0
             {
                 zelle.Spieler = this.spielerEins;
                 zelle.zellBrush.Color = this.spielerEins.zellBrush.Color;
+                Turn = !Turn;
+                return this.spielerEins.Priorität;
             }
 
             else
             {
                 zelle.Spieler = this.spielerZwei;
                 zelle.zellBrush.Color = this.spielerZwei.zellBrush.Color;
+                Turn = !Turn;
+                return this.spielerZwei.Priorität;
             }
 
 
-            Turn = !Turn;
+            
 
         }
 

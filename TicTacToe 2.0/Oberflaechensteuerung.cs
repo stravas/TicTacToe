@@ -28,9 +28,9 @@ namespace TicTacToe_2._0
             this.ResizeRedraw = true;
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(300, 300);
-            panel1.AutoSize = true;
-            panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-
+            //panel1.AutoSize = true;
+            //panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            
 
             //Spielfeld
             this.spielfeld = new Spielfeld();
@@ -78,11 +78,6 @@ namespace TicTacToe_2._0
 
         }
 
-        public void SpielerEintrag()
-        {
-
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -102,5 +97,25 @@ namespace TicTacToe_2._0
             panel1.Visible = false;
         }
 
+        private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Möchten Sie das Spiel wirklich beenden?", "Beenden", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {
+                //e.Cancel = true;
+            }
+
+        }
+
+        private void neuesSpielToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.spielfeld.feldReset();
+            panel1.Visible = true;
+        }
     }
 }

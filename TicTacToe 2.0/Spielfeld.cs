@@ -38,8 +38,9 @@ namespace TicTacToe_2._0
 
         private Zelle[,] berechneMatrix(int ClientWidth, int ClientHeight)
         {
-            int zellenBreite = ClientWidth / 6;
-            int zellenHoehe = ClientHeight / 6;
+            
+            int zellenBreite = ClientWidth / 5;
+            int zellenHoehe = ClientHeight / 5;
             for (int i = zellenBreite, x = 0; x <= 2; i += zellenBreite, x++)
             {
                 for (int j = zellenHoehe, y = 0; y <= 2; j += zellenHoehe, y++)
@@ -61,9 +62,8 @@ namespace TicTacToe_2._0
                 for (int y = 0; y <= 2; y++)
                 {
                     Zelle zelle = matrix[x, y];
-                    RectangleGeometry rectangle = new RectangleGeometry();
+                    
                     g.FillRectangle(zelle.zellBrush, zelle.Rectangle);
-                    g.DrawLines(blackPen, zelle.Rectangle.Bottom23);
                     g.DrawRectangle(blackPen, zelle.Rectangle);
 
                 }

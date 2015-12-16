@@ -110,10 +110,6 @@ namespace TicTacToe_2._0
             Turn = !Turn;
 
         }
-
-        public void resetButtons()
-        {
-
-        }
+        
     }
 }

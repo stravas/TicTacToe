@@ -30,6 +30,7 @@ namespace TicTacToe_2._0
             this.MinimumSize = new System.Drawing.Size(300, 300);
             //panel1.AutoSize = true;
             //panel1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.momentanerSpieler.Visible = false;
 
 
             //Spielfeld
@@ -39,11 +40,15 @@ namespace TicTacToe_2._0
         }
         private void ResizeFormPaint(object sender, PaintEventArgs e)
         {
+            automatischeRegulierungDerFontGrose();
             Spielfeld.zeichneSpielfeld(e.Graphics, this.ClientSize.Width, this.ClientSize.Height);
+
         }
+
         private void MouseOnFormClick(object sender, MouseEventArgs e)
         {
             Zelle zelle = Spielfeld.welcheZelle(e.Location);
+            this.spielerAnzeigeRotationImLabelMomentanerSpieler();
 
             string[] RückgabeArray = new string[3];
 
@@ -61,6 +66,7 @@ namespace TicTacToe_2._0
             this.Spielsteuerung.SpielerEins.Name = textBox1.Text;
             this.Spielsteuerung.SpielerZwei.Name = textBox2.Text;
 
+
             if (String.IsNullOrEmpty(this.Spielsteuerung.SpielerEins.Name))
             {
                 this.Spielsteuerung.SpielerEins.Name = "Spieler1";
@@ -71,8 +77,13 @@ namespace TicTacToe_2._0
                 this.Spielsteuerung.SpielerZwei.Name = "Spieler2";
             }
 
+            this.setzeErstenSpielerNameImLabelMomentanerSpieler();
+            this.momentanerSpieler.Visible = true;
             panel1.Visible = false;
+            hintergrundPanel.Visible = false;
+            //hintergrundPanel.Visible = false;
         }
+
         private void beenden_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -91,7 +102,11 @@ namespace TicTacToe_2._0
         {
             this.Spielfeld.feldReset();
             panel1.Visible = true;
+            hintergrundPanel.Visible = true;
+            this.momentanerSpieler.Visible = false;
+            //hintergrundPanel.Visible = true;
         }
+
         private void auswertungRundenChecker(string [] SpielDatenArray)
         {
             this.Refresh();
@@ -109,6 +124,35 @@ namespace TicTacToe_2._0
 
         }
 
+        public void setzeErstenSpielerNameImLabelMomentanerSpieler()
+        {
+            this.momentanerSpieler.Text = Spielsteuerung.SpielerEins.Name;
+            this.momentanerSpieler.ForeColor = Color.Green;
+        }
+        public void spielerAnzeigeRotationImLabelMomentanerSpieler()
+        {
+            if(this.Spielsteuerung.Runde == true)
+            {
+                this.momentanerSpieler.Text = Spielsteuerung.SpielerZwei.Name;
+                this.momentanerSpieler.ForeColor = Color.Red;
+            } else 
+            if (this.Spielsteuerung.Runde == false)
+            {
+                this.momentanerSpieler.Text = Spielsteuerung.SpielerEins.Name;
+                this.momentanerSpieler.ForeColor = Color.Green;
+            }
+        }
+
+        public void automatischeRegulierungDerFontGrose()
+        {
+           int height = this.ClientSize.Height;
+           int width =  this.ClientSize.Width;
+           int fontGroese = height + width;
+           fontGroese = fontGroese /70;
+
+           this.momentanerSpieler.Font = new Font("Impact", fontGroese);
+
+        }
 
     }
 }

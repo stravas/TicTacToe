@@ -42,6 +42,8 @@
             this.neuesSpielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.momentanerSpieler = new System.Windows.Forms.Label();
+            this.hintergrundPanel = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -51,14 +53,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(146, 285);
+            this.textBox1.Location = new System.Drawing.Point(139, 286);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(321, 285);
+            this.textBox2.Location = new System.Drawing.Point(314, 286);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 1;
@@ -68,7 +70,7 @@
             this.button1.BackColor = System.Drawing.Color.DarkTurquoise;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.button1.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(197, 336);
+            this.button1.Location = new System.Drawing.Point(190, 337);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(180, 60);
             this.button1.TabIndex = 2;
@@ -78,6 +80,8 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.MediumPurple;
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.pictureBox2);
@@ -87,10 +91,9 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(581, 403);
+            this.panel1.Size = new System.Drawing.Size(534, 403);
             this.panel1.TabIndex = 0;
             // 
             // pictureBox3
@@ -98,7 +101,7 @@
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox3.Image = global::TicTacToe_2._0.Properties.Resources.Spieler2;
-            this.pictureBox3.Location = new System.Drawing.Point(321, 180);
+            this.pictureBox3.Location = new System.Drawing.Point(314, 181);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(100, 90);
             this.pictureBox3.TabIndex = 7;
@@ -107,7 +110,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::TicTacToe_2._0.Properties.Resources.Spieler1;
-            this.pictureBox2.Location = new System.Drawing.Point(146, 180);
+            this.pictureBox2.Location = new System.Drawing.Point(139, 181);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(100, 90);
             this.pictureBox2.TabIndex = 6;
@@ -115,21 +118,18 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::TicTacToe_2._0.Properties.Resources.titlenbild21;
-            this.pictureBox1.Location = new System.Drawing.Point(103, 19);
+            this.pictureBox1.Location = new System.Drawing.Point(96, 20);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(360, 109);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Size = new System.Drawing.Size(380, 110);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(332, 150);
+            this.label2.Location = new System.Drawing.Point(341, 151);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 4;
@@ -138,7 +138,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(143, 150);
+            this.label1.Location = new System.Drawing.Point(167, 151);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 3;
@@ -152,7 +152,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(581, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(534, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -175,7 +175,7 @@
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beenden_ToolStripMenuItem_Click);
             // 
@@ -185,14 +185,35 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             // 
+            // momentanerSpieler
+            // 
+            this.momentanerSpieler.AutoSize = true;
+            this.momentanerSpieler.Dock = System.Windows.Forms.DockStyle.Right;
+            this.momentanerSpieler.Font = new System.Drawing.Font("Impact", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.momentanerSpieler.Location = new System.Drawing.Point(484, 24);
+            this.momentanerSpieler.Name = "momentanerSpieler";
+            this.momentanerSpieler.Padding = new System.Windows.Forms.Padding(0, 0, 50, 0);
+            this.momentanerSpieler.Size = new System.Drawing.Size(50, 25);
+            this.momentanerSpieler.TabIndex = 2;
+            // 
+            // hintergrundPanel
+            // 
+            this.hintergrundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hintergrundPanel.Location = new System.Drawing.Point(0, 0);
+            this.hintergrundPanel.Name = "hintergrundPanel";
+            this.hintergrundPanel.Size = new System.Drawing.Size(534, 512);
+            this.hintergrundPanel.TabIndex = 8;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumPurple;
-            this.ClientSize = new System.Drawing.Size(581, 427);
+            this.ClientSize = new System.Drawing.Size(534, 512);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.momentanerSpieler);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.hintergrundPanel);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "TicTacToe";
@@ -224,6 +245,8 @@
         private System.Windows.Forms.ToolStripMenuItem neuesSpielToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Label momentanerSpieler;
+        private System.Windows.Forms.Panel hintergrundPanel;
     }
 }
 

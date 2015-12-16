@@ -10,7 +10,7 @@ namespace TicTacToe_2._0
     class Spielsteuerung
     {
         public bool Runde = true;
-        int RundenZaehler = 1;
+        public int RundenZaehler = 1;
         public Spieler SpielerEins;
         public Spieler SpielerZwei;
 

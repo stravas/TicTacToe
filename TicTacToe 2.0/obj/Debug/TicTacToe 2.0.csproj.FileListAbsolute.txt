@@ -1,9 +1,0 @@
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\bin\Debug\TicTacToe 2.0.exe.config
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\bin\Debug\TicTacToe 2.0.exe
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\bin\Debug\TicTacToe 2.0.pdb
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\obj\Debug\TicTacToe_2._0.Form1.resources
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\obj\Debug\TicTacToe_2._0.Properties.Resources.resources
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\obj\Debug\TicTacToe 2.0.csproj.GenerateResource.Cache
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\obj\Debug\TicTacToe 2.0.exe
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\obj\Debug\TicTacToe 2.0.pdb
-C:\Projekte\ANW\TicTacToe\TicTacToe 2.0\obj\Debug\TicTacToe 2.0.csprojResolveAssemblyReference.cache

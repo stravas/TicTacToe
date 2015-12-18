@@ -27,7 +27,7 @@ namespace TicTacToe_2._0
         {
             this.ResizeRedraw = true;
             this.DoubleBuffered = true;
-            this.MinimumSize = new System.Drawing.Size(300, 300);
+            this.MinimumSize = new System.Drawing.Size(550, 550);
 
             //hintergrund von dem startPanel auf alle andere Panels und auf die Form übertragen
             this.hintergrundPanel.BackColor = this.startPanel.BackColor;
@@ -144,7 +144,7 @@ namespace TicTacToe_2._0
             {
                 this.momentanerSpieler.Text = Spielsteuerung.SpielerZwei.Name;
                 this.momentanerSpieler.ForeColor = Color.Red;
-            } else 
+            } else
             if (this.Spielsteuerung.Runde == false)
             {
                 this.momentanerSpieler.Text = Spielsteuerung.SpielerEins.Name;

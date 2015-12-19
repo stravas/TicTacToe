@@ -29,10 +29,9 @@ namespace TicTacToe_2._0
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(550, 550);
 
-            //hintergrund von dem startPanel auf alle andere Panels und auf die Form übertragen
+            //Hintergrund von dem startPanel auf alle andere Panels und auf die Form übertragen
             this.hintergrundPanel.BackColor = this.startPanel.BackColor;
             this.BackColor = this.startPanel.BackColor;
-
 
             //Spielfeld
             this.Spielfeld = new Spielfeld();
@@ -120,7 +119,11 @@ namespace TicTacToe_2._0
 
                 if (SpielDatenArray[1] == "Sieg")
                 {
+
                     string resultat = String.Format("Gewonnen hat Spieler: {0}", SpielDatenArray[2]);
+
+                    //int test = resultat.Length / 4;
+                    //startPunktX = startPunktX - test;
                     this.resultatLabel.Text = resultat;
 
                 }
@@ -129,6 +132,9 @@ namespace TicTacToe_2._0
                     this.resultatLabel.Text = "unentschieden!";
                 }
 
+                int startPunktX = (ClientSize.Width / 2 - resultatLabel.Width / 2);
+                int startPunktY = ClientSize.Height / 10;
+                this.resultatLabel.Location = new System.Drawing.Point(startPunktX, startPunktY);
             }
 
         }

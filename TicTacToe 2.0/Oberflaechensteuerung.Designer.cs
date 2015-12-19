@@ -52,6 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.hintergrundPanel.SuspendLayout();
             this.resultatPanel.SuspendLayout();
             this.SuspendLayout();
             //
@@ -95,9 +96,9 @@
             this.startPanel.Controls.Add(this.button1);
             this.startPanel.Controls.Add(this.textBox2);
             this.startPanel.Controls.Add(this.textBox1);
-            this.startPanel.Location = new System.Drawing.Point(0, 27);
+            this.startPanel.Location = new System.Drawing.Point(3, 27);
             this.startPanel.Name = "startPanel";
-            this.startPanel.Size = new System.Drawing.Size(534, 403);
+            this.startPanel.Size = new System.Drawing.Size(1023, 791);
             this.startPanel.TabIndex = 0;
             //
             // pictureBox3
@@ -123,7 +124,7 @@
             // pictureBox1
             //
             this.pictureBox1.Image = global::TicTacToe_2._0.Properties.Resources.titlenbild21;
-            this.pictureBox1.Location = new System.Drawing.Point(96, 20);
+            this.pictureBox1.Location = new System.Drawing.Point(80, 20);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(380, 110);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -202,6 +203,7 @@
             //
             // hintergrundPanel
             //
+            this.hintergrundPanel.Controls.Add(this.startPanel);
             this.hintergrundPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hintergrundPanel.Location = new System.Drawing.Point(0, 0);
             this.hintergrundPanel.Name = "hintergrundPanel";
@@ -210,21 +212,24 @@
             //
             // resultatPanel
             //
-            this.resultatPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.resultatPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultatPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(148)))), ((int)(((byte)(112)))), ((int)(((byte)(220)))));
             this.resultatPanel.Controls.Add(this.neueRunde);
             this.resultatPanel.Controls.Add(this.resultatLabel);
             this.resultatPanel.Location = new System.Drawing.Point(0, 24);
             this.resultatPanel.Name = "resultatPanel";
-            this.resultatPanel.Size = new System.Drawing.Size(531, 458);
+            this.resultatPanel.Size = new System.Drawing.Size(484, 488);
             this.resultatPanel.TabIndex = 8;
             this.resultatPanel.Visible = false;
             //
             // neueRunde
             //
-            this.neueRunde.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.neueRunde.Location = new System.Drawing.Point(190, 204);
+            this.neueRunde.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.neueRunde.Location = new System.Drawing.Point(193, 205);
             this.neueRunde.Name = "neueRunde";
-            this.neueRunde.Size = new System.Drawing.Size(146, 38);
+            this.neueRunde.Size = new System.Drawing.Size(150, 60);
             this.neueRunde.TabIndex = 1;
             this.neueRunde.Text = "Neue Runde";
             this.neueRunde.UseVisualStyleBackColor = true;
@@ -235,7 +240,7 @@
             this.resultatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.resultatLabel.AutoSize = true;
             this.resultatLabel.Font = new System.Drawing.Font("Impact", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultatLabel.Location = new System.Drawing.Point(165, 108);
+            this.resultatLabel.Location = new System.Drawing.Point(-5, 11);
             this.resultatLabel.Name = "resultatLabel";
             this.resultatLabel.Size = new System.Drawing.Size(63, 25);
             this.resultatLabel.TabIndex = 0;
@@ -248,7 +253,6 @@
             this.BackColor = System.Drawing.Color.MediumPurple;
             this.ClientSize = new System.Drawing.Size(534, 512);
             this.Controls.Add(this.resultatPanel);
-            this.Controls.Add(this.startPanel);
             this.Controls.Add(this.momentanerSpieler);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.hintergrundPanel);
@@ -263,6 +267,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.hintergrundPanel.ResumeLayout(false);
+            this.hintergrundPanel.PerformLayout();
             this.resultatPanel.ResumeLayout(false);
             this.resultatPanel.PerformLayout();
             this.ResumeLayout(false);

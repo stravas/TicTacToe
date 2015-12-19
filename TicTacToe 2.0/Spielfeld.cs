@@ -64,7 +64,7 @@ namespace TicTacToe_2._0
                 for (int y = 0; y <= 2; y++)
                 {
                     Zelle zelle = Matrix[x, y];
-
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
                     g.FillRectangle(zelle.StandardZellenPinsel, zelle.Rectangle);
                     g.DrawRectangle(blackPen, zelle.Rectangle);
 

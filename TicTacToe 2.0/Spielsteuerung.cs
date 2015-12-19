@@ -11,6 +11,7 @@ namespace TicTacToe_2._0
     {
         public bool Runde = true;
         public int RundenZaehler = 1;
+
         public Spieler SpielerEins;
         public Spieler SpielerZwei;
 
@@ -30,7 +31,6 @@ namespace TicTacToe_2._0
         public bool gewinnerPruefung(Zelle[,] matrix)
         {
             bool Gewonnen = false;
-            // int count
 
             //horizontale checks
             if ((matrix[0, 0].Spieler.Priorität == matrix[0, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität == matrix[0, 2].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
@@ -85,12 +85,14 @@ namespace TicTacToe_2._0
             {
                 zelle.Spieler = this.SpielerEins;
                 zelle.StandardZellenPinsel.Color = this.SpielerEins.ZellenPinsel.Color;
+                zelle.Spieler.Figur = "X";
             }
 
             else
             {
                 zelle.Spieler = this.SpielerZwei;
                 zelle.StandardZellenPinsel.Color = this.SpielerZwei.ZellenPinsel.Color;
+                zelle.Spieler.Figur = "O";
             }
 
 
@@ -98,49 +100,58 @@ namespace TicTacToe_2._0
 
         }
 
-        public string[] rundenChecker(Zelle zelle, Spielfeld spielfeld)
+        public string[] rundenChecker(Zelle geklickteZelle, Spielfeld spielfeld)
         {
-            string[] RückgabeArray = { "false", "error", "error"};
+            string[] ErgebnisArray = { "Rundenstatus", "Spielstatus", "Spielername"};
 
-            if (zelle != null && zelle.geklickt == false)
+            if (geklickteZelle != null && geklickteZelle.geklickt == false)
             {
-                this.welcherSpieler(zelle);
+                this.welcherSpieler(geklickteZelle);
 
                 if (RundenZaehler < 9)
                 {
-                    if (this.gewinnerPruefung(spielfeld.Matrix) == true)
+                    if (this.gewinnerPruefung(spielfeld.Matrix))
                     {
-                        //Hier wird zu früh resetet LETZTES FELD WIRD NICHT ANGEZEIGT
-
-                        RundenZaehler = 1;
-
-                        RückgabeArray[0] = "true";
-                        RückgabeArray[1] = "Sieg";
-                        RückgabeArray[2] = zelle.Spieler.Name;
-
-                        return RückgabeArray;
+                        return hatGewonnen(geklickteZelle, ErgebnisArray);
                     }
                     RundenZaehler++;
 
                 }
                 else
                 {
-                    //MessageBox.Show("Unentschieden!!");
 
-                    RundenZaehler = 1;
+                    if (this.gewinnerPruefung(spielfeld.Matrix))
+                    {
 
-                    RückgabeArray[0] = "true";
-                    RückgabeArray[1] = "Unentschieden";
+                        return hatGewonnen(geklickteZelle, ErgebnisArray);
+                    }
 
-                    return RückgabeArray;
+                    istUntentschieden(ErgebnisArray);
+
+                    return ErgebnisArray;
 
                 }
             }
-            return RückgabeArray;
+            return ErgebnisArray;
         }
 
+        private void istUntentschieden(string[] RückgabeArray)
+        {
+            RundenZaehler = 1;
 
+            RückgabeArray[0] = "true";
+            RückgabeArray[1] = "Unentschieden";
+        }
 
+        private string[] hatGewonnen(Zelle zelle, string[] RückgabeArray)
+        {
+            RundenZaehler = 1;
 
+            RückgabeArray[0] = "true";
+            RückgabeArray[1] = "Sieg";
+            RückgabeArray[2] = zelle.Spieler.Name;
+
+            return RückgabeArray;
+        }
     }
 }

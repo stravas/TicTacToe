@@ -40,16 +40,20 @@ namespace TicTacToe_2._0
         }
         private void ResizeFormPaint(object sender, PaintEventArgs e)
         {
-            automatischeRegulierungDerFontGrose();
+            reguliereFontGroesse();
             Spielfeld.zeichneSpielfeld(e.Graphics, this.ClientSize.Width, this.ClientSize.Height);
-            automatischeRegilerungDerLabelMitteInEinemPanel();
+            reguliertZentrierungLabelImPanel();
 
         }
 
         private void MouseOnFormClick(object sender, MouseEventArgs e)
         {
             Zelle zelle = Spielfeld.welcheZelle(e.Location);
-            this.spielerAnzeigeRotationImLabelMomentanerSpieler();
+            if(zelle != null && zelle.geklickt == false)
+            {
+                this.spielerAnzeigeRotationImLabelMomentanerSpieler();
+
+            }
 
             string[] RückgabeArray = new string[3];
 
@@ -85,7 +89,7 @@ namespace TicTacToe_2._0
             //hintergrundPanel.Visible = false;
         }
 
-        private void beenden_ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void beenden_MenueLeiste_Klick(object sender, EventArgs e)
         {
 
             DialogResult result = MessageBox.Show("Möchten Sie das Spiel wirklich beenden?", "Beenden", MessageBoxButtons.OKCancel);
@@ -99,7 +103,7 @@ namespace TicTacToe_2._0
             }
 
         }
-        private void neuesSpiel_ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void neuesSpiel_MenueLeiste_Klick(object sender, EventArgs e)
         {
             this.resultatPanel.Visible = false;
             this.Spielfeld.feldReset();
@@ -121,15 +125,12 @@ namespace TicTacToe_2._0
                 {
 
                     string resultat = String.Format("Gewonnen hat Spieler: {0}", SpielDatenArray[2]);
-
-                    //int test = resultat.Length / 4;
-                    //startPunktX = startPunktX - test;
                     this.resultatLabel.Text = resultat;
 
                 }
                 else
                 {
-                    this.resultatLabel.Text = "unentschieden!";
+                    this.resultatLabel.Text = "Unentschieden!";
                 }
 
                 int startPunktX = (ClientSize.Width / 2 - resultatLabel.Width / 2);
@@ -158,7 +159,7 @@ namespace TicTacToe_2._0
             }
         }
 
-        public void automatischeRegulierungDerFontGrose()
+        public void reguliereFontGroesse()
         {
            int height = this.ClientSize.Height;
            int width =  this.ClientSize.Width;
@@ -168,7 +169,7 @@ namespace TicTacToe_2._0
            this.momentanerSpieler.Font = new Font("Impact", fontGroese);
 
         }
-        public void automatischeRegilerungDerLabelMitteInEinemPanel()
+        public void reguliertZentrierungLabelImPanel()
         {
             resultatLabel.Width = this.Width / 2 - resultatLabel.Width / 2 - resultatLabel.Text.Length / 2;
         }

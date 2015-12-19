@@ -16,6 +16,7 @@ namespace TicTacToe_2._0
         public string Name;
         public SolidBrush ZellenPinsel = new SolidBrush(Color.White);
         public int Priorität = 0;
+        public string Figur = "";
 
     }
 }

@@ -32,12 +32,14 @@
             this.Spieler2TextBox = new System.Windows.Forms.TextBox();
             this.SpielStartenButton = new System.Windows.Forms.Button();
             this.startPanel = new System.Windows.Forms.Panel();
+            this.spielStatistikBS1 = new TicTacToe_2._0.SpielStatistikBS();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.resultatPanel = new System.Windows.Forms.Panel();
+            this.spielStatistikBS2 = new TicTacToe_2._0.SpielStatistikBS();
             this.neueRunde = new System.Windows.Forms.Button();
             this.resultatLabel = new System.Windows.Forms.Label();
             this.menueLeiste = new System.Windows.Forms.MenuStrip();
@@ -46,7 +48,6 @@
             this.beendenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hintergrundPanel = new System.Windows.Forms.Panel();
-            this.spielStatistikBS1 = new TicTacToe_2._0.SpielStatistikBS();
             this.startPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -89,6 +90,7 @@
             this.startPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.startPanel.AutoSize = true;
             this.startPanel.BackColor = System.Drawing.Color.MediumPurple;
+            this.startPanel.Controls.Add(this.spielStatistikBS1);
             this.startPanel.Controls.Add(this.pictureBox3);
             this.startPanel.Controls.Add(this.pictureBox2);
             this.startPanel.Controls.Add(this.pictureBox1);
@@ -101,6 +103,16 @@
             this.startPanel.Name = "startPanel";
             this.startPanel.Size = new System.Drawing.Size(684, 519);
             this.startPanel.TabIndex = 0;
+            //
+            // spielStatistikBS1
+            //
+            this.spielStatistikBS1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.spielStatistikBS1.BackColor = System.Drawing.Color.White;
+            this.spielStatistikBS1.Location = new System.Drawing.Point(495, 96);
+            this.spielStatistikBS1.Name = "spielStatistikBS1";
+            this.spielStatistikBS1.Size = new System.Drawing.Size(189, 205);
+            this.spielStatistikBS1.TabIndex = 9;
+            this.spielStatistikBS1.TabStop = false;
             //
             // pictureBox3
             //
@@ -153,6 +165,7 @@
             // resultatPanel
             //
             this.resultatPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(148)))), ((int)(((byte)(112)))), ((int)(((byte)(220)))));
+            this.resultatPanel.Controls.Add(this.spielStatistikBS2);
             this.resultatPanel.Controls.Add(this.neueRunde);
             this.resultatPanel.Controls.Add(this.resultatLabel);
             this.resultatPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -162,10 +175,19 @@
             this.resultatPanel.TabIndex = 8;
             this.resultatPanel.Visible = false;
             //
+            // spielStatistikBS2
+            //
+            this.spielStatistikBS2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.spielStatistikBS2.BackColor = System.Drawing.Color.White;
+            this.spielStatistikBS2.Location = new System.Drawing.Point(261, 158);
+            this.spielStatistikBS2.Name = "spielStatistikBS2";
+            this.spielStatistikBS2.Size = new System.Drawing.Size(189, 205);
+            this.spielStatistikBS2.TabIndex = 2;
+            //
             // neueRunde
             //
             this.neueRunde.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.neueRunde.Location = new System.Drawing.Point(293, 217);
+            this.neueRunde.Location = new System.Drawing.Point(281, 400);
             this.neueRunde.Name = "neueRunde";
             this.neueRunde.Size = new System.Drawing.Size(150, 60);
             this.neueRunde.TabIndex = 1;
@@ -208,14 +230,14 @@
             // neuesSpielMenuItem
             //
             this.neuesSpielMenuItem.Name = "neuesSpielMenuItem";
-            this.neuesSpielMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.neuesSpielMenuItem.Size = new System.Drawing.Size(135, 22);
             this.neuesSpielMenuItem.Text = "Neues Spiel";
             this.neuesSpielMenuItem.Click += new System.EventHandler(this.neuesSpielMenueLeisteKlick);
             //
             // beendenMenuItem
             //
             this.beendenMenuItem.Name = "beendenMenuItem";
-            this.beendenMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.beendenMenuItem.Size = new System.Drawing.Size(135, 22);
             this.beendenMenuItem.Text = "Beenden";
             this.beendenMenuItem.Click += new System.EventHandler(this.beenden_MenueLeiste_Klick);
             //
@@ -234,15 +256,6 @@
             this.hintergrundPanel.Size = new System.Drawing.Size(684, 512);
             this.hintergrundPanel.TabIndex = 8;
             //
-            // spielStatistikBS1
-            //
-            this.spielStatistikBS1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.spielStatistikBS1.BackColor = System.Drawing.Color.White;
-            this.spielStatistikBS1.Location = new System.Drawing.Point(495, 96);
-            this.spielStatistikBS1.Name = "spielStatistikBS1";
-            this.spielStatistikBS1.Size = new System.Drawing.Size(189, 205);
-            this.spielStatistikBS1.TabIndex = 9;
-            //
             // Form1
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,7 +265,6 @@
             this.Controls.Add(this.menueLeiste);
             this.Controls.Add(this.resultatPanel);
             this.Controls.Add(this.hintergrundPanel);
-            this.Controls.Add(this.spielStatistikBS1);
             this.MainMenuStrip = this.menueLeiste;
             this.Name = "Form1";
             this.Text = "TicTacToe";
@@ -293,6 +305,7 @@
         private System.Windows.Forms.Label resultatLabel;
         private System.Windows.Forms.Button neueRunde;
         private SpielStatistikBS spielStatistikBS1;
+        private SpielStatistikBS spielStatistikBS2;
     }
 }
 

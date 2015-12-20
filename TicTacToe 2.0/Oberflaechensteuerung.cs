@@ -22,6 +22,7 @@ namespace TicTacToe_2._0
             InitializeComponent();
             Controls.Add(spielStatistikBS1);
 
+
         }
 
         private void FormLoad(object sender, EventArgs e)
@@ -46,6 +47,7 @@ namespace TicTacToe_2._0
             reguliereFontGroesseSpielerZugAnzeige();
             Spielfeld.zeichneSpielfeld(e.Graphics, this.ClientSize.Width, this.ClientSize.Height);
             zentrierResulatatLabelErgebnisflaeche();
+            ankerZuSpielfeld();
 
         }
 
@@ -67,9 +69,6 @@ namespace TicTacToe_2._0
 
         private void SpielStartButtonClick(object sender, EventArgs e)
         {
-
-
-
             Spielsteuerung.vergebeSpielername(Spieler1TextBox.Text, Spieler2TextBox.Text);
 
             //<!--Methode-->
@@ -86,7 +85,7 @@ namespace TicTacToe_2._0
             //Spieler Runden
             Spielsteuerung.RundenZaehler = 0;
             spielStatistikBS1.aktualisiereRundenAnzahl(0);
-
+            spielStatistikBS1.fokusSpielerEins();
 
             wechselZurSpielfläche();
         }
@@ -101,6 +100,7 @@ namespace TicTacToe_2._0
         {
             startPanel.Visible = false;
            // spielStatistikBS1.Visible = true;
+
             hintergrundPanel.Visible = false;
         }
 
@@ -132,7 +132,14 @@ namespace TicTacToe_2._0
         {
             if (zelle != null && zelle.geklickt == false)
             {
-                this.wechselSpielerZugAnzeige();
+                if (this.Spielsteuerung.Zug)
+                {
+                    spielStatistikBS1.fokusSpielerZwei();
+                }
+                else
+                {
+                    spielStatistikBS1.fokusSpielerEins();
+                }
 
             }
         }
@@ -141,7 +148,7 @@ namespace TicTacToe_2._0
 
             if (SpielDatenArray[0] == "true")
             {
-                wechselZuErgebnisOberfläche();
+
                 Spielsteuerung.RundenZaehler++;
                 spielStatistikBS1.aktualisiereRundenAnzahl(Spielsteuerung.RundenZaehler);
 
@@ -158,6 +165,8 @@ namespace TicTacToe_2._0
                     this.resultatLabel.Text = "Unentschieden!";
                 }
 
+                wechselZuErgebnisOberfläche();
+
                 int startPunktX = (ClientSize.Width / 2 - resultatLabel.Width / 2);
                 int startPunktY = ClientSize.Height / 10;
                 this.resultatLabel.Location = new System.Drawing.Point(startPunktX, startPunktY);
@@ -168,22 +177,29 @@ namespace TicTacToe_2._0
 
         private void wechselZuErgebnisOberfläche()
         {
+            synchSpielStatistik();
+            spielStatistikBS1.Visible = true;
             this.resultatPanel.Visible = true;
         }
 
-        public void wechselSpielerZugAnzeige()
-        {
-            if (this.Spielsteuerung.Zug)
-            {
-                //Spieler1Fokus
-            }
-            else
-            {
-                //Spieler2Fokus
-            }
-        }
-
         //Hilfsmethoden
+        public void synchSpielStatistik()
+        {
+            spielStatistikBS2.aktualisiereSpielerEinsName(spielStatistikBS1.holeSpielerEinsName());
+            spielStatistikBS2.aktualisiereSpielerZweiName(spielStatistikBS1.holeSpielerZweiName());
+
+            spielStatistikBS2.aktualisiereSpielerEinsSiege(spielStatistikBS1.holeSpielerEinsSiege());
+            spielStatistikBS2.aktualisiereSpielerZweiSiege(spielStatistikBS1.holeSpielerZweiSiege());
+
+            spielStatistikBS2.aktualisiereRundenAnzahl(spielStatistikBS1.holeRundenAnzahl());
+        }
+        public void ankerZuSpielfeld()
+        {
+            int x = Spielfeld.Matrix[2, 0].Rectangle.X + Spielfeld.Matrix[2, 0].Rectangle.Width + 50;
+            //int x = Convert.ToInt16((double)Spielfeld.Matrix[2, 0].Rectangle.X * 1.5);
+            spielStatistikBS1.Location = new Point(x, Spielfeld.Matrix[2, 0].Rectangle.Y);
+
+        }
         public void reguliereFontGroesseSpielerZugAnzeige()
         {
             int height = this.ClientSize.Height;

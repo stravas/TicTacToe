@@ -88,12 +88,17 @@ namespace TicTacToe_2._0
         {
             Spieler2Label.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Spieler1Label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Spieler2Label.ForeColor = Color.Black;
+            Spieler1Label.ForeColor = Color.Green;
+
         }
 
         public void fokusSpielerZwei()
         {
             Spieler1Label.BorderStyle = System.Windows.Forms.BorderStyle.None;
             Spieler2Label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Spieler1Label.ForeColor = Color.Black;
+            Spieler2Label.ForeColor = Color.Red;
         }
 
     }

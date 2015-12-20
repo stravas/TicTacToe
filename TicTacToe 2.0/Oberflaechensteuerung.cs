@@ -108,6 +108,7 @@ namespace TicTacToe_2._0
         {
             this.resultatPanel.Visible = false;
             this.Spielfeld.feldReset();
+            Spielsteuerung.Zug = true;
             startPanel.Visible = true;
             hintergrundPanel.Visible = true;
         }

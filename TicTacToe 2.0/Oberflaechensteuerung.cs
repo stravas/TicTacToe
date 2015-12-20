@@ -20,6 +20,7 @@ namespace TicTacToe_2._0
         public Form1()
         {
             InitializeComponent();
+            Controls.Add(spielStatistikBS1);
 
         }
 
@@ -28,7 +29,7 @@ namespace TicTacToe_2._0
             //Optionen
             this.ResizeRedraw = true;
             this.DoubleBuffered = true;
-            this.MinimumSize = new System.Drawing.Size(550, 550);
+            this.MinimumSize = new System.Drawing.Size(700, 550);
 
             //Hintergrund von dem startPanel auf alle andere Panels und auf die Form übertragen
             this.hintergrundPanel.BackColor = this.startPanel.BackColor;
@@ -38,6 +39,7 @@ namespace TicTacToe_2._0
             this.Spielfeld = new Spielfeld();
             this.Paint += new PaintEventHandler(ZeichneSpielfeldNeu);
             this.MouseClick += new MouseEventHandler(MausFormKlick);
+            this.FormClosing += new FormClosingEventHandler(schliesseForm);
         }
         private void ZeichneSpielfeldNeu(object sender, PaintEventArgs e)
         {
@@ -65,22 +67,40 @@ namespace TicTacToe_2._0
 
         private void SpielStartButtonClick(object sender, EventArgs e)
         {
+
+
+
             Spielsteuerung.vergebeSpielername(Spieler1TextBox.Text, Spieler2TextBox.Text);
+
+            //<!--Methode-->
+            //SpielerNamen
+            spielStatistikBS1.aktualisiereSpielerEinsName(Spielsteuerung.SpielerEins.Name);
+            spielStatistikBS1.aktualisiereSpielerZweiName(Spielsteuerung.SpielerZwei.Name);
+
+            //Runden Siege
+            Spielsteuerung.SpielerEins.SpielSiege = 0;
+            spielStatistikBS1.aktualisiereSpielerEinsSiege(0);
+            Spielsteuerung.SpielerZwei.SpielSiege = 0;
+            spielStatistikBS1.aktualisiereSpielerZweiSiege(0);
+
+            //Spieler Runden
+            Spielsteuerung.RundenZaehler = 0;
+            spielStatistikBS1.aktualisiereRundenAnzahl(0);
+
+
             wechselZurSpielfläche();
         }
         private void NeueRundeButtonKlick(object sender, EventArgs e)
         {
             this.Spielfeld.feldReset();
             resultatPanel.Visible = false;
-            spielerZugAnzeige.Visible = true;
             this.Refresh();
         }
 
         private void wechselZurSpielfläche()
         {
-            this.setzeErstenSpielerNameImLabelMomentanerSpieler();
-            this.spielerZugAnzeige.Visible = true;
             startPanel.Visible = false;
+           // spielStatistikBS1.Visible = true;
             hintergrundPanel.Visible = false;
         }
 
@@ -90,24 +110,24 @@ namespace TicTacToe_2._0
             this.Spielfeld.feldReset();
             startPanel.Visible = true;
             hintergrundPanel.Visible = true;
-            this.spielerZugAnzeige.Visible = false;
-            //hintergrundPanel.Visible = true;
         }
         private void beenden_MenueLeiste_Klick(object sender, EventArgs e)
         {
 
-            DialogResult result = MessageBox.Show("Möchten Sie das Spiel wirklich beenden?", "Beenden", MessageBoxButtons.OKCancel);
-            if (result == DialogResult.OK)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                //e.Cancel = true;
-            }
+            if (MessageBox.Show("Soll das Programm wirklich beendet werden?",
+                               "Beenden", MessageBoxButtons.OKCancel,
+                                 MessageBoxIcon.Question) == DialogResult.OK)
+            Environment.Exit(0);
 
         }
 
+        private void schliesseForm(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Soll das Programm wirklich beendet werden?",
+                              "Beenden", MessageBoxButtons.OKCancel,
+                                MessageBoxIcon.Question) == DialogResult.Cancel)
+                e.Cancel = true;
+        }
         private void wechselSpielerZugAnzeige(Zelle zelle)
         {
             if (zelle != null && zelle.geklickt == false)
@@ -122,10 +142,13 @@ namespace TicTacToe_2._0
             if (SpielDatenArray[0] == "true")
             {
                 wechselZuErgebnisOberfläche();
+                Spielsteuerung.RundenZaehler++;
+                spielStatistikBS1.aktualisiereRundenAnzahl(Spielsteuerung.RundenZaehler);
+
 
                 if (SpielDatenArray[1] == "Sieg")
                 {
-
+                    setzeSpielerPunkte(SpielDatenArray[2]);
                     string resultat = String.Format("Gewonnen hat Spieler: {0}", SpielDatenArray[2]);
                     this.resultatLabel.Text = resultat;
 
@@ -140,34 +163,25 @@ namespace TicTacToe_2._0
                 this.resultatLabel.Location = new System.Drawing.Point(startPunktX, startPunktY);
             }
 
+
         }
 
         private void wechselZuErgebnisOberfläche()
         {
             this.resultatPanel.Visible = true;
-            spielerZugAnzeige.Visible = false;
         }
 
-        public void setzeErstenSpielerNameImLabelMomentanerSpieler()
-        {
-            this.spielerZugAnzeige.Text = Spielsteuerung.SpielerEins.Name;
-            this.spielerZugAnzeige.ForeColor = Color.Green;
-        }
         public void wechselSpielerZugAnzeige()
         {
-            if (this.Spielsteuerung.Runde)
+            if (this.Spielsteuerung.Zug)
             {
-                this.spielerZugAnzeige.Text = Spielsteuerung.SpielerZwei.Name;
-                this.spielerZugAnzeige.ForeColor = Spielsteuerung.SpielerZwei.ZellenPinsel.Color;
+                //Spieler1Fokus
             }
             else
             {
-                this.spielerZugAnzeige.Text = Spielsteuerung.SpielerEins.Name;
-                this.spielerZugAnzeige.ForeColor = Spielsteuerung.SpielerEins.ZellenPinsel.Color;
+                //Spieler2Fokus
             }
         }
-
-
 
         //Hilfsmethoden
         public void reguliereFontGroesseSpielerZugAnzeige()
@@ -176,8 +190,7 @@ namespace TicTacToe_2._0
             int width = this.ClientSize.Width;
             int fontGroese = height + width;
             fontGroese = fontGroese / 70;
-
-            this.spielerZugAnzeige.Font = new Font("Impact", fontGroese);
+            //SpielerZugAnzeigeText
 
         }
         public void zentrierResulatatLabelErgebnisflaeche()
@@ -191,5 +204,17 @@ namespace TicTacToe_2._0
                 SpielStartenButton.Enabled = false;
             }
         }
+        public void setzeSpielerPunkte(String Spielername)
+        {
+            if (Spielsteuerung.SpielerEins.Name == Spielername)
+            {
+                spielStatistikBS1.aktualisiereSpielerEinsSiege(Spielsteuerung.SpielerEins.SpielSiege);
+                    }
+            else
+            {
+                spielStatistikBS1.aktualisiereSpielerZweiSiege(Spielsteuerung.SpielerZwei.SpielSiege);
+            }
+        }
+
     }
 }

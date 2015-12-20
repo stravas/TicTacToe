@@ -9,9 +9,9 @@ namespace TicTacToe_2._0
 {
     class Spielsteuerung
     {
-        public bool Runde = true;
+        public bool Zug = true;
+        public int ZugZaehler = 1;
         public int RundenZaehler = 1;
-        public int SitzungsZaehler = 1;
 
         public Spieler SpielerEins;
         public Spieler SpielerZwei;
@@ -82,7 +82,7 @@ namespace TicTacToe_2._0
         {
             zelle.geklickt = true;
 
-            if (Runde)
+            if (Zug)
             {
                 zelle.Spieler = this.SpielerEins;
                 zelle.DefaultPinsel.Color = this.SpielerEins.ZellenPinsel.Color;
@@ -97,7 +97,7 @@ namespace TicTacToe_2._0
             }
 
 
-            Runde = !Runde;
+            Zug = !Zug;
 
         }
 
@@ -109,13 +109,13 @@ namespace TicTacToe_2._0
             {
                 this.welcherSpieler(geklickteZelle);
 
-                if (RundenZaehler < 9)
+                if (ZugZaehler < 9)
                 {
                     if (this.gewinnerPruefung(spielfeld.Matrix))
                     {
                         return hatGewonnen(geklickteZelle, ErgebnisArray);
                     }
-                    RundenZaehler++;
+                    ZugZaehler++;
 
                 }
                 else
@@ -138,7 +138,7 @@ namespace TicTacToe_2._0
 
         private void istUntentschieden(string[] RückgabeArray)
         {
-            RundenZaehler = 1;
+            ZugZaehler = 1;
 
             RückgabeArray[0] = "true";
             RückgabeArray[1] = "Unentschieden";
@@ -146,11 +146,12 @@ namespace TicTacToe_2._0
 
         private string[] hatGewonnen(Zelle zelle, string[] RückgabeArray)
         {
-            RundenZaehler = 1;
+            ZugZaehler = 1;
 
             RückgabeArray[0] = "true";
             RückgabeArray[1] = "Sieg";
             RückgabeArray[2] = zelle.Spieler.Name;
+            spielErgebnis(zelle.Spieler);
 
             return RückgabeArray;
         }
@@ -165,6 +166,13 @@ namespace TicTacToe_2._0
             {
                 SpielerZwei.Name = spieler2TextEngabe;
             }
+
+        }
+
+        public void spielErgebnis(Spieler spieler)
+        {
+
+                 spieler.SpielSiege++;
 
         }
     }

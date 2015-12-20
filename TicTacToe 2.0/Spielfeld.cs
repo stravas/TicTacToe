@@ -77,7 +77,7 @@ namespace TicTacToe_2._0
                     g.SmoothingMode = SmoothingMode.AntiAlias;
 
                     // Draw string to screen.
-                    g.FillRectangle(zelle.StandardZellenPinsel, zelle.Rectangle);
+                    g.FillRectangle(zelle.DefaultPinsel, zelle.Rectangle);
                     g.DrawRectangle(blackPen, zelle.Rectangle);
 
                     g.TextRenderingHint = TextRenderingHint.AntiAlias;

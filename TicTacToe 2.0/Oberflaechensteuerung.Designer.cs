@@ -28,60 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Spieler1TextBox = new System.Windows.Forms.TextBox();
+            this.Spieler2TextBox = new System.Windows.Forms.TextBox();
+            this.SpielStartenButton = new System.Windows.Forms.Button();
             this.startPanel = new System.Windows.Forms.Panel();
-            this.resultatPanel = new System.Windows.Forms.Panel();
-            this.neueRunde = new System.Windows.Forms.Button();
-            this.resultatLabel = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.neuesSpielToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.momentanerSpieler = new System.Windows.Forms.Label();
+            this.resultatPanel = new System.Windows.Forms.Panel();
+            this.neueRunde = new System.Windows.Forms.Button();
+            this.resultatLabel = new System.Windows.Forms.Label();
+            this.menueLeiste = new System.Windows.Forms.MenuStrip();
+            this.dateiMenueLeiste = new System.Windows.Forms.ToolStripMenuItem();
+            this.neuesSpielMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.beendenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spielerZugAnzeige = new System.Windows.Forms.Label();
             this.hintergrundPanel = new System.Windows.Forms.Panel();
             this.startPanel.SuspendLayout();
-            this.resultatPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.resultatPanel.SuspendLayout();
+            this.menueLeiste.SuspendLayout();
             this.hintergrundPanel.SuspendLayout();
             this.SuspendLayout();
             //
-            // textBox1
+            // Spieler1TextBox
             //
-            this.textBox1.Location = new System.Drawing.Point(139, 286);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.Spieler1TextBox.Location = new System.Drawing.Point(139, 286);
+            this.Spieler1TextBox.Name = "Spieler1TextBox";
+            this.Spieler1TextBox.Size = new System.Drawing.Size(100, 20);
+            this.Spieler1TextBox.TabIndex = 0;
             //
-            // textBox2
+            // Spieler2TextBox
             //
-            this.textBox2.Location = new System.Drawing.Point(314, 286);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.Spieler2TextBox.Location = new System.Drawing.Point(314, 286);
+            this.Spieler2TextBox.Name = "Spieler2TextBox";
+            this.Spieler2TextBox.Size = new System.Drawing.Size(100, 20);
+            this.Spieler2TextBox.TabIndex = 1;
+            this.Spieler2TextBox.TextChanged += new System.EventHandler(this.verhinderSelbenNamen);
             //
-            // button1
+            // SpielStartenButton
             //
-            this.button1.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.button1.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(190, 337);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 60);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Spiel Starten";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.spielStart_button1_Click);
+            this.SpielStartenButton.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.SpielStartenButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.SpielStartenButton.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SpielStartenButton.Location = new System.Drawing.Point(190, 337);
+            this.SpielStartenButton.Name = "SpielStartenButton";
+            this.SpielStartenButton.Size = new System.Drawing.Size(180, 60);
+            this.SpielStartenButton.TabIndex = 2;
+            this.SpielStartenButton.Text = "Spiel Starten";
+            this.SpielStartenButton.UseVisualStyleBackColor = false;
+            this.SpielStartenButton.Click += new System.EventHandler(this.SpielStartButtonClick);
             //
             // startPanel
             //
@@ -93,49 +94,13 @@
             this.startPanel.Controls.Add(this.pictureBox1);
             this.startPanel.Controls.Add(this.label2);
             this.startPanel.Controls.Add(this.label1);
-            this.startPanel.Controls.Add(this.button1);
-            this.startPanel.Controls.Add(this.textBox2);
-            this.startPanel.Controls.Add(this.textBox1);
+            this.startPanel.Controls.Add(this.SpielStartenButton);
+            this.startPanel.Controls.Add(this.Spieler2TextBox);
+            this.startPanel.Controls.Add(this.Spieler1TextBox);
             this.startPanel.Location = new System.Drawing.Point(0, 24);
             this.startPanel.Name = "startPanel";
             this.startPanel.Size = new System.Drawing.Size(1023, 791);
             this.startPanel.TabIndex = 0;
-            //
-            // resultatPanel
-            //
-            this.resultatPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.resultatPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(148)))), ((int)(((byte)(112)))), ((int)(((byte)(220)))));
-            this.resultatPanel.Controls.Add(this.neueRunde);
-            this.resultatPanel.Controls.Add(this.resultatLabel);
-            this.resultatPanel.Location = new System.Drawing.Point(0, 0);
-            this.resultatPanel.Name = "resultatPanel";
-            this.resultatPanel.Size = new System.Drawing.Size(534, 488);
-            this.resultatPanel.TabIndex = 8;
-            this.resultatPanel.Visible = false;
-            //
-            // neueRunde
-            //
-            this.neueRunde.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.neueRunde.Location = new System.Drawing.Point(218, 205);
-            this.neueRunde.Name = "neueRunde";
-            this.neueRunde.Size = new System.Drawing.Size(150, 60);
-            this.neueRunde.TabIndex = 1;
-            this.neueRunde.Text = "Neue Runde";
-            this.neueRunde.UseVisualStyleBackColor = true;
-            this.neueRunde.Click += new System.EventHandler(this.neueRunde_Click);
-            //
-            // resultatLabel
-            //
-            this.resultatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.resultatLabel.AutoSize = true;
-            this.resultatLabel.Font = new System.Drawing.Font("Impact", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultatLabel.Location = new System.Drawing.Point(20, 11);
-            this.resultatLabel.Name = "resultatLabel";
-            this.resultatLabel.Size = new System.Drawing.Size(63, 25);
-            this.resultatLabel.TabIndex = 0;
-            this.resultatLabel.Text = "label3";
             //
             // pictureBox3
             //
@@ -185,57 +150,93 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Spieler 1";
             //
-            // menuStrip1
+            // resultatPanel
             //
-            this.menuStrip1.BackColor = System.Drawing.Color.Silver;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dateiToolStripMenuItem,
-            this.aboutToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(534, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.resultatPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.resultatPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(148)))), ((int)(((byte)(112)))), ((int)(((byte)(220)))));
+            this.resultatPanel.Controls.Add(this.neueRunde);
+            this.resultatPanel.Controls.Add(this.resultatLabel);
+            this.resultatPanel.Location = new System.Drawing.Point(54, 51);
+            this.resultatPanel.Name = "resultatPanel";
+            this.resultatPanel.Size = new System.Drawing.Size(534, 488);
+            this.resultatPanel.TabIndex = 8;
+            this.resultatPanel.Visible = false;
             //
-            // dateiToolStripMenuItem
+            // neueRunde
             //
-            this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.neuesSpielToolStripMenuItem,
-            this.beendenToolStripMenuItem});
-            this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
-            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.dateiToolStripMenuItem.Text = "Datei";
+            this.neueRunde.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.neueRunde.Location = new System.Drawing.Point(218, 205);
+            this.neueRunde.Name = "neueRunde";
+            this.neueRunde.Size = new System.Drawing.Size(150, 60);
+            this.neueRunde.TabIndex = 1;
+            this.neueRunde.Text = "Neue Runde";
+            this.neueRunde.UseVisualStyleBackColor = true;
+            this.neueRunde.Click += new System.EventHandler(this.NeueRundeButtonKlick);
             //
-            // neuesSpielToolStripMenuItem
+            // resultatLabel
             //
-            this.neuesSpielToolStripMenuItem.Name = "neuesSpielToolStripMenuItem";
-            this.neuesSpielToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.neuesSpielToolStripMenuItem.Text = "Neues Spiel";
-            this.neuesSpielToolStripMenuItem.Click += new System.EventHandler(this.neuesSpiel_MenueLeiste_Klick);
+            this.resultatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.resultatLabel.AutoSize = true;
+            this.resultatLabel.Font = new System.Drawing.Font("Impact", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resultatLabel.Location = new System.Drawing.Point(20, 11);
+            this.resultatLabel.Name = "resultatLabel";
+            this.resultatLabel.Size = new System.Drawing.Size(123, 25);
+            this.resultatLabel.TabIndex = 0;
+            this.resultatLabel.Text = "Spielergebnis";
             //
-            // beendenToolStripMenuItem
+            // menueLeiste
             //
-            this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.beendenToolStripMenuItem.Text = "Beenden";
-            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beenden_MenueLeiste_Klick);
+            this.menueLeiste.BackColor = System.Drawing.Color.Silver;
+            this.menueLeiste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dateiMenueLeiste,
+            this.aboutMenuItem});
+            this.menueLeiste.Location = new System.Drawing.Point(0, 0);
+            this.menueLeiste.Name = "menueLeiste";
+            this.menueLeiste.Size = new System.Drawing.Size(534, 24);
+            this.menueLeiste.TabIndex = 1;
+            this.menueLeiste.Text = "menuStrip1";
             //
-            // aboutToolStripMenuItem
+            // dateiMenueLeiste
             //
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.dateiMenueLeiste.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.neuesSpielMenuItem,
+            this.beendenMenuItem});
+            this.dateiMenueLeiste.Name = "dateiMenueLeiste";
+            this.dateiMenueLeiste.Size = new System.Drawing.Size(46, 20);
+            this.dateiMenueLeiste.Text = "Datei";
             //
-            // momentanerSpieler
+            // neuesSpielMenuItem
             //
-            this.momentanerSpieler.AutoSize = true;
-            this.momentanerSpieler.Dock = System.Windows.Forms.DockStyle.Right;
-            this.momentanerSpieler.Font = new System.Drawing.Font("Impact", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.momentanerSpieler.Location = new System.Drawing.Point(484, 24);
-            this.momentanerSpieler.Name = "momentanerSpieler";
-            this.momentanerSpieler.Padding = new System.Windows.Forms.Padding(0, 0, 50, 0);
-            this.momentanerSpieler.Size = new System.Drawing.Size(50, 25);
-            this.momentanerSpieler.TabIndex = 2;
+            this.neuesSpielMenuItem.Name = "neuesSpielMenuItem";
+            this.neuesSpielMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.neuesSpielMenuItem.Text = "Neues Spiel";
+            this.neuesSpielMenuItem.Click += new System.EventHandler(this.neuesSpielMenueLeisteKlick);
+            //
+            // beendenMenuItem
+            //
+            this.beendenMenuItem.Name = "beendenMenuItem";
+            this.beendenMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.beendenMenuItem.Text = "Beenden";
+            this.beendenMenuItem.Click += new System.EventHandler(this.beenden_MenueLeiste_Klick);
+            //
+            // aboutMenuItem
+            //
+            this.aboutMenuItem.Name = "aboutMenuItem";
+            this.aboutMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.aboutMenuItem.Text = "About";
+            //
+            // spielerZugAnzeige
+            //
+            this.spielerZugAnzeige.AutoSize = true;
+            this.spielerZugAnzeige.Dock = System.Windows.Forms.DockStyle.Right;
+            this.spielerZugAnzeige.Font = new System.Drawing.Font("Impact", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spielerZugAnzeige.Location = new System.Drawing.Point(484, 24);
+            this.spielerZugAnzeige.Name = "spielerZugAnzeige";
+            this.spielerZugAnzeige.Padding = new System.Windows.Forms.Padding(0, 0, 50, 0);
+            this.spielerZugAnzeige.Size = new System.Drawing.Size(50, 25);
+            this.spielerZugAnzeige.TabIndex = 2;
             //
             // hintergrundPanel
             //
@@ -252,23 +253,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MediumPurple;
             this.ClientSize = new System.Drawing.Size(534, 512);
-            this.Controls.Add(this.momentanerSpieler);
             this.Controls.Add(this.resultatPanel);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.spielerZugAnzeige);
+            this.Controls.Add(this.menueLeiste);
             this.Controls.Add(this.hintergrundPanel);
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menueLeiste;
             this.Name = "Form1";
             this.Text = "TicTacToe";
             this.Load += new System.EventHandler(this.FormLoad);
             this.startPanel.ResumeLayout(false);
             this.startPanel.PerformLayout();
-            this.resultatPanel.ResumeLayout(false);
-            this.resultatPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.resultatPanel.ResumeLayout(false);
+            this.resultatPanel.PerformLayout();
+            this.menueLeiste.ResumeLayout(false);
+            this.menueLeiste.PerformLayout();
             this.hintergrundPanel.ResumeLayout(false);
             this.hintergrundPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -278,20 +279,20 @@
 
         #endregion
         private System.Windows.Forms.Panel startPanel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button SpielStartenButton;
+        private System.Windows.Forms.TextBox Spieler2TextBox;
+        private System.Windows.Forms.TextBox Spieler1TextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem dateiToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem neuesSpielToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.Label momentanerSpieler;
+        private System.Windows.Forms.MenuStrip menueLeiste;
+        private System.Windows.Forms.ToolStripMenuItem dateiMenueLeiste;
+        private System.Windows.Forms.ToolStripMenuItem neuesSpielMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem beendenMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
+        private System.Windows.Forms.Label spielerZugAnzeige;
         private System.Windows.Forms.Panel hintergrundPanel;
         private System.Windows.Forms.Panel resultatPanel;
         private System.Windows.Forms.Label resultatLabel;

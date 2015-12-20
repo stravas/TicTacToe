@@ -25,6 +25,7 @@ namespace TicTacToe_2._0
 
         private void FormLoad(object sender, EventArgs e)
         {
+            //Optionen
             this.ResizeRedraw = true;
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(550, 550);
@@ -35,60 +36,63 @@ namespace TicTacToe_2._0
 
             //Spielfeld
             this.Spielfeld = new Spielfeld();
-            this.Paint += new PaintEventHandler(ResizeFormPaint);
-            this.MouseClick += new MouseEventHandler(MouseOnFormClick);
+            this.Paint += new PaintEventHandler(ZeichneSpielfeldNeu);
+            this.MouseClick += new MouseEventHandler(MausFormKlick);
         }
-        private void ResizeFormPaint(object sender, PaintEventArgs e)
+        private void ZeichneSpielfeldNeu(object sender, PaintEventArgs e)
         {
-            reguliereFontGroesse();
+            reguliereFontGroesseSpielerZugAnzeige();
             Spielfeld.zeichneSpielfeld(e.Graphics, this.ClientSize.Width, this.ClientSize.Height);
-            reguliertZentrierungLabelImPanel();
+            zentrierResulatatLabelErgebnisflaeche();
 
         }
 
-        private void MouseOnFormClick(object sender, MouseEventArgs e)
+        private void MausFormKlick(object sender, MouseEventArgs e)
         {
+            string[] auswertungsErgebnis = new string[3];
+
             Zelle zelle = Spielfeld.welcheZelle(e.Location);
-            if(zelle != null && zelle.geklickt == false)
-            {
-                this.spielerAnzeigeRotationImLabelMomentanerSpieler();
+            wechselSpielerZugAnzeige(zelle);
 
-            }
+            auswertungsErgebnis = Spielsteuerung.rundenAuswertung(zelle, Spielfeld);
 
-            string[] RückgabeArray = new string[3];
-
-            RückgabeArray = Spielsteuerung.rundenChecker(zelle, Spielfeld);
-
-            //Diese Funktion Wertet die Ergebnisse der Funktion rundenChecker aus und gibt dann die View Weiter
-            this.auswertungRundenChecker(RückgabeArray);
+            //Diese Funktion Wertet die Ergebnisse der Funktion rundenChecker aus und gibt dann die View weiter
+            this.auswertungRundenChecker(auswertungsErgebnis);
             this.Refresh();
 
 
         }
 
-        private void spielStart_button1_Click(object sender, EventArgs e)
+        private void SpielStartButtonClick(object sender, EventArgs e)
         {
-            this.Spielsteuerung.SpielerEins.Name = textBox1.Text;
-            this.Spielsteuerung.SpielerZwei.Name = textBox2.Text;
-
-
-            if (String.IsNullOrEmpty(this.Spielsteuerung.SpielerEins.Name))
-            {
-                this.Spielsteuerung.SpielerEins.Name = "Spieler1";
-            }
-
-            if (String.IsNullOrEmpty(this.Spielsteuerung.SpielerZwei.Name))
-            {
-                this.Spielsteuerung.SpielerZwei.Name = "Spieler2";
-            }
-
-            this.setzeErstenSpielerNameImLabelMomentanerSpieler();
-            this.momentanerSpieler.Visible = true;
-            startPanel.Visible = false;
-            hintergrundPanel.Visible = false;
-            //hintergrundPanel.Visible = false;
+            Spielsteuerung.vergebeSpielername(Spieler1TextBox.Text, Spieler2TextBox.Text);
+            wechselZurSpielfläche();
+        }
+        private void NeueRundeButtonKlick(object sender, EventArgs e)
+        {
+            this.Spielfeld.feldReset();
+            resultatPanel.Visible = false;
+            spielerZugAnzeige.Visible = true;
+            this.Refresh();
         }
 
+        private void wechselZurSpielfläche()
+        {
+            this.setzeErstenSpielerNameImLabelMomentanerSpieler();
+            this.spielerZugAnzeige.Visible = true;
+            startPanel.Visible = false;
+            hintergrundPanel.Visible = false;
+        }
+
+        private void neuesSpielMenueLeisteKlick(object sender, EventArgs e)
+        {
+            this.resultatPanel.Visible = false;
+            this.Spielfeld.feldReset();
+            startPanel.Visible = true;
+            hintergrundPanel.Visible = true;
+            this.spielerZugAnzeige.Visible = false;
+            //hintergrundPanel.Visible = true;
+        }
         private void beenden_MenueLeiste_Klick(object sender, EventArgs e)
         {
 
@@ -103,23 +107,21 @@ namespace TicTacToe_2._0
             }
 
         }
-        private void neuesSpiel_MenueLeiste_Klick(object sender, EventArgs e)
-        {
-            this.resultatPanel.Visible = false;
-            this.Spielfeld.feldReset();
-            startPanel.Visible = true;
-            hintergrundPanel.Visible = true;
-            this.momentanerSpieler.Visible = false;
-            //hintergrundPanel.Visible = true;
-        }
 
-        private void auswertungRundenChecker(string [] SpielDatenArray)
+        private void wechselSpielerZugAnzeige(Zelle zelle)
         {
-            this.Refresh();
+            if (zelle != null && zelle.geklickt == false)
+            {
+                this.wechselSpielerZugAnzeige();
+
+            }
+        }
+        private void auswertungRundenChecker(string[] SpielDatenArray)
+        {
+
             if (SpielDatenArray[0] == "true")
             {
-                this.resultatPanel.Visible = true;
-                momentanerSpieler.Visible = false;
+                wechselZuErgebnisOberfläche();
 
                 if (SpielDatenArray[1] == "Sieg")
                 {
@@ -140,46 +142,54 @@ namespace TicTacToe_2._0
 
         }
 
+        private void wechselZuErgebnisOberfläche()
+        {
+            this.resultatPanel.Visible = true;
+            spielerZugAnzeige.Visible = false;
+        }
+
         public void setzeErstenSpielerNameImLabelMomentanerSpieler()
         {
-            this.momentanerSpieler.Text = Spielsteuerung.SpielerEins.Name;
-            this.momentanerSpieler.ForeColor = Color.Green;
+            this.spielerZugAnzeige.Text = Spielsteuerung.SpielerEins.Name;
+            this.spielerZugAnzeige.ForeColor = Color.Green;
         }
-        public void spielerAnzeigeRotationImLabelMomentanerSpieler()
+        public void wechselSpielerZugAnzeige()
         {
-            if(this.Spielsteuerung.Runde == true)
+            if (this.Spielsteuerung.Runde)
             {
-                this.momentanerSpieler.Text = Spielsteuerung.SpielerZwei.Name;
-                this.momentanerSpieler.ForeColor = Color.Red;
-            } else
-            if (this.Spielsteuerung.Runde == false)
+                this.spielerZugAnzeige.Text = Spielsteuerung.SpielerZwei.Name;
+                this.spielerZugAnzeige.ForeColor = Spielsteuerung.SpielerZwei.ZellenPinsel.Color;
+            }
+            else
             {
-                this.momentanerSpieler.Text = Spielsteuerung.SpielerEins.Name;
-                this.momentanerSpieler.ForeColor = Color.Green;
+                this.spielerZugAnzeige.Text = Spielsteuerung.SpielerEins.Name;
+                this.spielerZugAnzeige.ForeColor = Spielsteuerung.SpielerEins.ZellenPinsel.Color;
             }
         }
 
-        public void reguliereFontGroesse()
-        {
-           int height = this.ClientSize.Height;
-           int width =  this.ClientSize.Width;
-           int fontGroese = height + width;
-           fontGroese = fontGroese /70;
 
-           this.momentanerSpieler.Font = new Font("Impact", fontGroese);
+
+        //Hilfsmethoden
+        public void reguliereFontGroesseSpielerZugAnzeige()
+        {
+            int height = this.ClientSize.Height;
+            int width = this.ClientSize.Width;
+            int fontGroese = height + width;
+            fontGroese = fontGroese / 70;
+
+            this.spielerZugAnzeige.Font = new Font("Impact", fontGroese);
 
         }
-        public void reguliertZentrierungLabelImPanel()
+        public void zentrierResulatatLabelErgebnisflaeche()
         {
             resultatLabel.Width = this.Width / 2 - resultatLabel.Width / 2 - resultatLabel.Text.Length / 2;
         }
-
-        private void neueRunde_Click(object sender, EventArgs e)
+        private void verhinderSelbenNamen(object sender, EventArgs e)
         {
-            this.Spielfeld.feldReset();
-            resultatPanel.Visible = false;
-            momentanerSpieler.Visible = true;
-            this.Refresh();
+            if (Spieler1TextBox == Spieler2TextBox && Spieler1TextBox.Text != "" && Spieler2TextBox.Text != "")
+            {
+                SpielStartenButton.Enabled = false;
+            }
         }
     }
 }

@@ -9,49 +9,50 @@ namespace TicTacToe_2._0
 {
     class Spielsteuerung
     {
-        public bool Runde = true;
+        public bool Zug = true;
+        public int ZugZaehler = 1;
         public int RundenZaehler = 1;
+
         public Spieler SpielerEins;
         public Spieler SpielerZwei;
 
         public Spielsteuerung()
         {
             SpielerEins = new Spieler();
-            SpielerEins.Priorität = 1;
+            SpielerEins.Id = 1;
             SpielerEins.ZellenPinsel = new SolidBrush(Color.Green);
-            SpielerEins.Name = "s1";
+            SpielerEins.Name = "Spieler1";
 
             SpielerZwei = new Spieler();
-            SpielerZwei.Priorität = 2;
+            SpielerZwei.Id = 2;
             SpielerZwei.ZellenPinsel = new SolidBrush(Color.Red);
-            SpielerZwei.Name = "s2";
+            SpielerZwei.Name = "Spieler2";
         }
 
         public bool gewinnerPruefung(Zelle[,] matrix)
         {
             bool Gewonnen = false;
-            // int count
 
             //horizontale checks
-            if ((matrix[0, 0].Spieler.Priorität == matrix[0, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität == matrix[0, 2].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
+            if ((matrix[0, 0].Spieler.Id == matrix[0, 1].Spieler.Id) && (matrix[0, 1].Spieler.Id == matrix[0, 2].Spieler.Id) && (matrix[0, 0].Spieler.Id != 0))
                 Gewonnen = true;
-            else if ((matrix[1, 0].Spieler.Priorität == matrix[1, 1].Spieler.Priorität) && (matrix[1, 1].Spieler.Priorität == matrix[1, 2].Spieler.Priorität) && (matrix[1, 0].Spieler.Priorität != 0))
+            else if ((matrix[1, 0].Spieler.Id == matrix[1, 1].Spieler.Id) && (matrix[1, 1].Spieler.Id == matrix[1, 2].Spieler.Id) && (matrix[1, 0].Spieler.Id != 0))
                 Gewonnen = true;
-            else if ((matrix[2, 0].Spieler.Priorität == matrix[2, 1].Spieler.Priorität) && (matrix[2, 1].Spieler.Priorität == matrix[2, 2].Spieler.Priorität) && (matrix[2, 0].Spieler.Priorität != 0))
+            else if ((matrix[2, 0].Spieler.Id == matrix[2, 1].Spieler.Id) && (matrix[2, 1].Spieler.Id == matrix[2, 2].Spieler.Id) && (matrix[2, 0].Spieler.Id != 0))
                 Gewonnen = true;
 
             //vertikale checks
-            else if ((matrix[0, 0].Spieler.Priorität == matrix[1, 0].Spieler.Priorität) && (matrix[1, 0].Spieler.Priorität == matrix[2, 0].Spieler.Priorität) && (matrix[0, 0].Spieler.Priorität != 0))
+            else if ((matrix[0, 0].Spieler.Id == matrix[1, 0].Spieler.Id) && (matrix[1, 0].Spieler.Id == matrix[2, 0].Spieler.Id) && (matrix[0, 0].Spieler.Id != 0))
                 Gewonnen = true;
-            else if ((matrix[0, 1].Spieler.Priorität == matrix[1, 1].Spieler.Priorität) && (matrix[1, 1].Spieler.Priorität == matrix[2, 1].Spieler.Priorität) && (matrix[0, 1].Spieler.Priorität != 0))
+            else if ((matrix[0, 1].Spieler.Id == matrix[1, 1].Spieler.Id) && (matrix[1, 1].Spieler.Id == matrix[2, 1].Spieler.Id) && (matrix[0, 1].Spieler.Id != 0))
                 Gewonnen = true;
-            else if ((matrix[0, 2].Spieler.Priorität == matrix[1, 2].Spieler.Priorität) && (matrix[1, 2].Spieler.Priorität == matrix[2, 2].Spieler.Priorität) && (matrix[0, 2].Spieler.Priorität != 0))
+            else if ((matrix[0, 2].Spieler.Id == matrix[1, 2].Spieler.Id) && (matrix[1, 2].Spieler.Id == matrix[2, 2].Spieler.Id) && (matrix[0, 2].Spieler.Id != 0))
                 Gewonnen = true;
 
             //diagonale checks
-            if ((matrix[0, 0].Spieler == matrix[1, 1].Spieler) && (matrix[1, 1].Spieler == matrix[2, 2].Spieler) && (matrix[0, 0].Spieler.Priorität != 0))
+            if ((matrix[0, 0].Spieler == matrix[1, 1].Spieler) && (matrix[1, 1].Spieler == matrix[2, 2].Spieler) && (matrix[0, 0].Spieler.Id != 0))
                 Gewonnen = true;
-            else if ((matrix[0, 2].Spieler == matrix[1, 1].Spieler) && (matrix[1, 1].Spieler == matrix[2, 0].Spieler) && (matrix[0, 2].Spieler.Priorität != 0))
+            else if ((matrix[0, 2].Spieler == matrix[1, 1].Spieler) && (matrix[1, 1].Spieler == matrix[2, 0].Spieler) && (matrix[0, 2].Spieler.Id != 0))
                 Gewonnen = true;
 
 
@@ -81,66 +82,98 @@ namespace TicTacToe_2._0
         {
             zelle.geklickt = true;
 
-            if (Runde)
+            if (Zug)
             {
                 zelle.Spieler = this.SpielerEins;
-                zelle.StandardZellenPinsel.Color = this.SpielerEins.ZellenPinsel.Color;
+                zelle.DefaultPinsel.Color = this.SpielerEins.ZellenPinsel.Color;
+                zelle.Spieler.Figur = "X";
             }
 
             else
             {
                 zelle.Spieler = this.SpielerZwei;
-                zelle.StandardZellenPinsel.Color = this.SpielerZwei.ZellenPinsel.Color;
+                zelle.DefaultPinsel.Color = this.SpielerZwei.ZellenPinsel.Color;
+                zelle.Spieler.Figur = "O";
             }
 
 
-            Runde = !Runde;
+            Zug = !Zug;
 
         }
 
-        public string[] rundenChecker(Zelle zelle, Spielfeld spielfeld)
+        public string[] rundenAuswertung(Zelle geklickteZelle, Spielfeld spielfeld)
         {
-            string[] RückgabeArray = { "false", "error", "error"};
+            string[] ErgebnisArray = { "Rundenstatus", "Spielstatus", "Spielername"};
 
-            if (zelle != null && zelle.geklickt == false)
+            if (geklickteZelle != null && geklickteZelle.geklickt == false)
             {
-                this.welcherSpieler(zelle);
+                this.welcherSpieler(geklickteZelle);
 
-                if (RundenZaehler < 9)
+                if (ZugZaehler < 9)
                 {
-                    if (this.gewinnerPruefung(spielfeld.Matrix) == true)
+                    if (this.gewinnerPruefung(spielfeld.Matrix))
                     {
-                        //Hier wird zu früh resetet LETZTES FELD WIRD NICHT ANGEZEIGT
-
-                        RundenZaehler = 1;
-
-                        RückgabeArray[0] = "true";
-                        RückgabeArray[1] = "Sieg";
-                        RückgabeArray[2] = zelle.Spieler.Name;
-
-                        return RückgabeArray;
+                        return hatGewonnen(geklickteZelle, ErgebnisArray);
                     }
-                    RundenZaehler++;
+                    ZugZaehler++;
 
                 }
                 else
                 {
-                    //MessageBox.Show("Unentschieden!!");
 
-                    RundenZaehler = 1;
+                    if (this.gewinnerPruefung(spielfeld.Matrix))
+                    {
 
-                    RückgabeArray[0] = "true";
-                    RückgabeArray[1] = "Unentschieden";
+                        return hatGewonnen(geklickteZelle, ErgebnisArray);
+                    }
 
-                    return RückgabeArray;
+                    istUntentschieden(ErgebnisArray);
+
+                    return ErgebnisArray;
 
                 }
             }
+            return ErgebnisArray;
+        }
+
+        private void istUntentschieden(string[] RückgabeArray)
+        {
+            ZugZaehler = 1;
+
+            RückgabeArray[0] = "true";
+            RückgabeArray[1] = "Unentschieden";
+        }
+
+        private string[] hatGewonnen(Zelle zelle, string[] RückgabeArray)
+        {
+            ZugZaehler = 1;
+
+            RückgabeArray[0] = "true";
+            RückgabeArray[1] = "Sieg";
+            RückgabeArray[2] = zelle.Spieler.Name;
+            spielErgebnis(zelle.Spieler);
+
             return RückgabeArray;
         }
 
+        public void vergebeSpielername(string spieler1TextEngabe, string spieler2TextEngabe)
+        {
+            if (!string.IsNullOrEmpty(spieler1TextEngabe))
+            {
+                SpielerEins.Name = spieler1TextEngabe;
+            }
+            if (!string.IsNullOrEmpty(spieler2TextEngabe))
+            {
+                SpielerZwei.Name = spieler2TextEngabe;
+            }
 
+        }
 
+        public void spielErgebnis(Spieler spieler)
+        {
 
+                 spieler.SpielSiege++;
+
+        }
     }
 }

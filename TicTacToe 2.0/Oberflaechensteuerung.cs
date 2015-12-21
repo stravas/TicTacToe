@@ -20,159 +20,218 @@ namespace TicTacToe_2._0
         public Form1()
         {
             InitializeComponent();
+            Controls.Add(spielStatistikBS1);
+
 
         }
 
         private void FormLoad(object sender, EventArgs e)
         {
+            //Optionen
             this.ResizeRedraw = true;
             this.DoubleBuffered = true;
-            this.MinimumSize = new System.Drawing.Size(300, 300);
+            this.MinimumSize = new System.Drawing.Size(700, 550);
 
-            //hintergrund von dem startPanel auf alle andere Panels und auf die Form übertragen
+            //Hintergrund von dem startPanel auf alle andere Panels und auf die Form übertragen
             this.hintergrundPanel.BackColor = this.startPanel.BackColor;
             this.BackColor = this.startPanel.BackColor;
 
-
             //Spielfeld
             this.Spielfeld = new Spielfeld();
-            this.Paint += new PaintEventHandler(ResizeFormPaint);
-            this.MouseClick += new MouseEventHandler(MouseOnFormClick);
+            this.Paint += new PaintEventHandler(ZeichneSpielfeldNeu);
+            this.MouseClick += new MouseEventHandler(MausFormKlick);
+            this.FormClosing += new FormClosingEventHandler(schliesseForm);
         }
-        private void ResizeFormPaint(object sender, PaintEventArgs e)
+        private void ZeichneSpielfeldNeu(object sender, PaintEventArgs e)
         {
-            automatischeRegulierungDerFontGrose();
+            reguliereFontGroesseSpielerZugAnzeige();
             Spielfeld.zeichneSpielfeld(e.Graphics, this.ClientSize.Width, this.ClientSize.Height);
-            automatischeRegilerungDerLabelMitteInEinemPanel();
+            zentrierResulatatLabelErgebnisflaeche();
+            ankerZuSpielfeld();
 
         }
 
-        private void MouseOnFormClick(object sender, MouseEventArgs e)
+        private void MausFormKlick(object sender, MouseEventArgs e)
         {
+            string[] auswertungsErgebnis = new string[3];
+
             Zelle zelle = Spielfeld.welcheZelle(e.Location);
-            this.spielerAnzeigeRotationImLabelMomentanerSpieler();
+            wechselSpielerZugAnzeige(zelle);
 
-            string[] RückgabeArray = new string[3];
+            auswertungsErgebnis = Spielsteuerung.rundenAuswertung(zelle, Spielfeld);
 
-            RückgabeArray = Spielsteuerung.rundenChecker(zelle, Spielfeld);
-
-            //Diese Funktion Wertet die Ergebnisse der Funktion rundenChecker aus und gibt dann die View Weiter
-            this.auswertungRundenChecker(RückgabeArray);
+            //Diese Funktion Wertet die Ergebnisse der Funktion rundenChecker aus und gibt dann die View weiter
+            this.auswertungRundenChecker(auswertungsErgebnis);
             this.Refresh();
 
 
         }
 
-        private void spielStart_button1_Click(object sender, EventArgs e)
+        private void SpielStartButtonClick(object sender, EventArgs e)
         {
-            this.Spielsteuerung.SpielerEins.Name = textBox1.Text;
-            this.Spielsteuerung.SpielerZwei.Name = textBox2.Text;
+            Spielsteuerung.vergebeSpielername(Spieler1TextBox.Text, Spieler2TextBox.Text);
 
+            //<!--Methode-->
+            //SpielerNamen
+            spielStatistikBS1.aktualisiereSpielerEinsName(Spielsteuerung.SpielerEins.Name);
+            spielStatistikBS1.aktualisiereSpielerZweiName(Spielsteuerung.SpielerZwei.Name);
 
-            if (String.IsNullOrEmpty(this.Spielsteuerung.SpielerEins.Name))
-            {
-                this.Spielsteuerung.SpielerEins.Name = "Spieler1";
-            }
+            //Runden Siege
+            Spielsteuerung.SpielerEins.SpielSiege = 0;
+            spielStatistikBS1.aktualisiereSpielerEinsSiege(0);
+            Spielsteuerung.SpielerZwei.SpielSiege = 0;
+            spielStatistikBS1.aktualisiereSpielerZweiSiege(0);
 
-            if (String.IsNullOrEmpty(this.Spielsteuerung.SpielerZwei.Name))
-            {
-                this.Spielsteuerung.SpielerZwei.Name = "Spieler2";
-            }
+            //Spieler Runden
+            Spielsteuerung.RundenZaehler = 0;
+            spielStatistikBS1.aktualisiereRundenAnzahl(0);
+            spielStatistikBS1.fokusSpielerEins();
 
-            this.setzeErstenSpielerNameImLabelMomentanerSpieler();
-            this.momentanerSpieler.Visible = true;
+            wechselZurSpielfläche();
+        }
+        private void NeueRundeButtonKlick(object sender, EventArgs e)
+        {
+            this.Spielfeld.feldReset();
+            resultatPanel.Visible = false;
+            this.Refresh();
+        }
+
+        private void wechselZurSpielfläche()
+        {
             startPanel.Visible = false;
+           // spielStatistikBS1.Visible = true;
+
             hintergrundPanel.Visible = false;
-            //hintergrundPanel.Visible = false;
         }
 
-        private void beenden_ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            DialogResult result = MessageBox.Show("Möchten Sie das Spiel wirklich beenden?", "Beenden", MessageBoxButtons.OKCancel);
-            if (result == DialogResult.OK)
-            {
-                Environment.Exit(0);
-            }
-            else
-            {
-                //e.Cancel = true;
-            }
-
-        }
-        private void neuesSpiel_ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void neuesSpielMenueLeisteKlick(object sender, EventArgs e)
         {
             this.resultatPanel.Visible = false;
             this.Spielfeld.feldReset();
+            Spielsteuerung.Zug = true;
             startPanel.Visible = true;
             hintergrundPanel.Visible = true;
-            this.momentanerSpieler.Visible = false;
-            //hintergrundPanel.Visible = true;
+        }
+        private void beenden_MenueLeiste_Klick(object sender, EventArgs e)
+        {
+
+            if (MessageBox.Show("Soll das Programm wirklich beendet werden?",
+                               "Beenden", MessageBoxButtons.OKCancel,
+                                 MessageBoxIcon.Question) == DialogResult.OK)
+            Environment.Exit(0);
+
         }
 
-        private void auswertungRundenChecker(string [] SpielDatenArray)
+        private void schliesseForm(object sender, FormClosingEventArgs e)
         {
-            this.Refresh();
+            if (MessageBox.Show("Soll das Programm wirklich beendet werden?",
+                              "Beenden", MessageBoxButtons.OKCancel,
+                                MessageBoxIcon.Question) == DialogResult.Cancel)
+                e.Cancel = true;
+        }
+        private void wechselSpielerZugAnzeige(Zelle zelle)
+        {
+            if (zelle != null && zelle.geklickt == false)
+            {
+                if (this.Spielsteuerung.Zug)
+                {
+                    spielStatistikBS1.fokusSpielerZwei();
+                }
+                else
+                {
+                    spielStatistikBS1.fokusSpielerEins();
+                }
+
+            }
+        }
+        private void auswertungRundenChecker(string[] SpielDatenArray)
+        {
+
             if (SpielDatenArray[0] == "true")
             {
-                this.resultatPanel.Visible = true;
-                momentanerSpieler.Visible = false;
+
+                Spielsteuerung.RundenZaehler++;
+                spielStatistikBS1.aktualisiereRundenAnzahl(Spielsteuerung.RundenZaehler);
+
 
                 if (SpielDatenArray[1] == "Sieg")
                 {
+                    setzeSpielerPunkte(SpielDatenArray[2]);
                     string resultat = String.Format("Gewonnen hat Spieler: {0}", SpielDatenArray[2]);
                     this.resultatLabel.Text = resultat;
 
                 }
                 else
                 {
-                    this.resultatLabel.Text = "unentschieden!";
+                    this.resultatLabel.Text = "Unentschieden!";
                 }
 
+                wechselZuErgebnisOberfläche();
+
+                int startPunktX = (ClientSize.Width / 2 - resultatLabel.Width / 2);
+                int startPunktY = ClientSize.Height / 10;
+                this.resultatLabel.Location = new System.Drawing.Point(startPunktX, startPunktY);
             }
 
+
         }
 
-        public void setzeErstenSpielerNameImLabelMomentanerSpieler()
+        private void wechselZuErgebnisOberfläche()
         {
-            this.momentanerSpieler.Text = Spielsteuerung.SpielerEins.Name;
-            this.momentanerSpieler.ForeColor = Color.Green;
+            synchSpielStatistik();
+            spielStatistikBS1.Visible = true;
+            this.resultatPanel.Visible = true;
         }
-        public void spielerAnzeigeRotationImLabelMomentanerSpieler()
+
+        //Hilfsmethoden
+        public void synchSpielStatistik()
         {
-            if(this.Spielsteuerung.Runde == true)
-            {
-                this.momentanerSpieler.Text = Spielsteuerung.SpielerZwei.Name;
-                this.momentanerSpieler.ForeColor = Color.Red;
-            } else 
-            if (this.Spielsteuerung.Runde == false)
-            {
-                this.momentanerSpieler.Text = Spielsteuerung.SpielerEins.Name;
-                this.momentanerSpieler.ForeColor = Color.Green;
-            }
-        }
+            spielStatistikBS2.aktualisiereSpielerEinsName(spielStatistikBS1.holeSpielerEinsName());
+            spielStatistikBS2.aktualisiereSpielerZweiName(spielStatistikBS1.holeSpielerZweiName());
 
-        public void automatischeRegulierungDerFontGrose()
+            spielStatistikBS2.aktualisiereSpielerEinsSiege(spielStatistikBS1.holeSpielerEinsSiege());
+            spielStatistikBS2.aktualisiereSpielerZweiSiege(spielStatistikBS1.holeSpielerZweiSiege());
+
+            spielStatistikBS2.aktualisiereRundenAnzahl(spielStatistikBS1.holeRundenAnzahl());
+        }
+        public void ankerZuSpielfeld()
         {
-           int height = this.ClientSize.Height;
-           int width =  this.ClientSize.Width;
-           int fontGroese = height + width;
-           fontGroese = fontGroese /70;
-
-           this.momentanerSpieler.Font = new Font("Impact", fontGroese);
+            int x = Spielfeld.Matrix[2, 0].Rectangle.X + Spielfeld.Matrix[2, 0].Rectangle.Width + 50;
+            //int x = Convert.ToInt16((double)Spielfeld.Matrix[2, 0].Rectangle.X * 1.5);
+            spielStatistikBS1.Location = new Point(x, Spielfeld.Matrix[2, 0].Rectangle.Y);
 
         }
-        public void automatischeRegilerungDerLabelMitteInEinemPanel()
+        public void reguliereFontGroesseSpielerZugAnzeige()
+        {
+            int height = this.ClientSize.Height;
+            int width = this.ClientSize.Width;
+            int fontGroese = height + width;
+            fontGroese = fontGroese / 70;
+            //SpielerZugAnzeigeText
+
+        }
+        public void zentrierResulatatLabelErgebnisflaeche()
         {
             resultatLabel.Width = this.Width / 2 - resultatLabel.Width / 2 - resultatLabel.Text.Length / 2;
         }
-
-        private void neueRunde_Click(object sender, EventArgs e)
+        private void verhinderSelbenNamen(object sender, EventArgs e)
         {
-            this.Spielfeld.feldReset();
-            resultatPanel.Visible = false;
-            momentanerSpieler.Visible = true;
-            this.Refresh();
+            if (Spieler1TextBox == Spieler2TextBox && Spieler1TextBox.Text != "" && Spieler2TextBox.Text != "")
+            {
+                SpielStartenButton.Enabled = false;
+            }
         }
+        public void setzeSpielerPunkte(String Spielername)
+        {
+            if (Spielsteuerung.SpielerEins.Name == Spielername)
+            {
+                spielStatistikBS1.aktualisiereSpielerEinsSiege(Spielsteuerung.SpielerEins.SpielSiege);
+                    }
+            else
+            {
+                spielStatistikBS1.aktualisiereSpielerZweiSiege(Spielsteuerung.SpielerZwei.SpielSiege);
+            }
+        }
+
     }
 }

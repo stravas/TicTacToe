@@ -13,7 +13,7 @@ namespace TicTacToe_2._0
         public Rectangle Rectangle;
         public Spieler Spieler;
         public bool geklickt = false;
-        public SolidBrush StandardZellenPinsel = new SolidBrush(Color.White);
+        public SolidBrush DefaultPinsel = new SolidBrush(Color.White);
 
         public Zelle()
         {
@@ -22,5 +22,6 @@ namespace TicTacToe_2._0
             this.Spieler = new Spieler();
 
         }
+
     }
 }

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="TicTacToe_2._0.Form1">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <Members>
+      <Field Name="aboutMenuItem" Hidden="true" />
+      <Field Name="beendenMenuItem" Hidden="true" />
+      <Field Name="components" Hidden="true" />
+      <Field Name="dateiMenueLeiste" Hidden="true" />
+      <Field Name="hintergrundPanel" Hidden="true" />
+      <Field Name="label1" Hidden="true" />
+      <Field Name="label2" Hidden="true" />
+      <Field Name="menueLeiste" Hidden="true" />
+      <Field Name="neueRunde" Hidden="true" />
+      <Field Name="neuesSpielMenuItem" Hidden="true" />
+      <Field Name="pictureBox1" Hidden="true" />
+      <Field Name="pictureBox2" Hidden="true" />
+      <Field Name="pictureBox3" Hidden="true" />
+      <Field Name="resultatLabel" Hidden="true" />
+      <Field Name="resultatPanel" Hidden="true" />
+      <Field Name="Spieler1TextBox" Hidden="true" />
+      <Field Name="Spieler2TextBox" Hidden="true" />
+      <Field Name="SpielStartenButton" Hidden="true" />
+      <Field Name="spielStatistikBS1" Hidden="true" />
+      <Field Name="spielStatistikBS2" Hidden="true" />
+      <Field Name="startPanel" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAARJgASYAGBAAgIyFAIQCAAABiEUAAEAEEADQAKA=</HashCode>
+      <FileName>Oberflaechensteuerung.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Spielfeld" />
+      <Field Name="Spielsteuerung" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TicTacToe_2._0.Spieler">
+    <Position X="14" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAECAAAAAAAAgAAAA=</HashCode>
+      <FileName>Spieler.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ZellenPinsel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TicTacToe_2._0.Spielfeld">
+    <Position X="9" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIQAAIAgAAIgAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Spielfeld.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Matrix" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TicTacToe_2._0.SpielStatistikBS">
+    <Position X="3.5" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Private" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AABAAAABACAAaCAAAEDAIAkCQBIAAAAABAAAABAAAAI=</HashCode>
+      <FileName>SpielStatistikBS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TicTacToe_2._0.Spielsteuerung">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAQEACgEAAAAABAAIAACAAABAAAAABAEAAgg=</HashCode>
+      <FileName>Spielsteuerung.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="SpielerEins" />
+      <Field Name="SpielerZwei" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TicTacToe_2._0.Zelle">
+    <Position X="12.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAEABAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Zelle.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Spieler" />
+      <Field Name="DefaultPinsel" />
+      <Field Name="Rectangle" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.Drawing.SolidBrush" Collapsed="true">
+    <Position X="15.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Struct Name="System.Drawing.Rectangle" Collapsed="true">
+    <Position X="15.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

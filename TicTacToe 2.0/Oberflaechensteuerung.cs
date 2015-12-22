@@ -66,10 +66,10 @@ namespace TicTacToe_2._0
             string[] auswertungsErgebnis = new string[3];
 
             Zelle zelle = Spielfeld.welcheZelle(e.Location);
+            wechselSpielerZugAnzeige(zelle);
             auswertungsErgebnis = Spielsteuerung.rundenAuswertung(zelle, Spielfeld);
             //Diese Funktion Wertet die Ergebnisse der Funktion rundenChecker aus und gibt dann die View weiter
             this.verarbeiteRundenAuswertungsErgebnis(auswertungsErgebnis);
-            wechselSpielerZugAnzeige(zelle);
             this.Refresh();
 
 
@@ -234,7 +234,8 @@ namespace TicTacToe_2._0
 
         private void aboutMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("TicTacToe Applikation in C#"  + "\n" + "Von Adonis Thaci und Fabio Norbutat" + "\n" + "GSO FIA41 Köln/Cologne");
+            MessageBox.Show("TicTacToe Applikation in C#"  + "\n" + "\n" + "Von Adonis Thaci und Fabio Norbutat" + "\n" + "GSO FIA41 Köln/Cologne" + "\n" + "\n" + "Code auf github.com/stravas/TicTacToe ", "Über");
         }
+
     }
 }

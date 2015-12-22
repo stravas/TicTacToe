@@ -190,11 +190,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(438, 151);
+            this.label2.Location = new System.Drawing.Point(441, 151);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 19);
+            this.label2.Size = new System.Drawing.Size(81, 19);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Spieler2";
+            this.label2.Text = "Spieler 2";
             // 
             // label1
             // 
@@ -272,6 +272,7 @@
             this.Controls.Add(this.resultatPanel);
             this.Controls.Add(this.hintergrundPanel);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menueLeiste;
             this.Name = "Form1";
             this.Text = "TicTacToe";

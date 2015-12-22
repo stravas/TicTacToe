@@ -72,7 +72,6 @@ namespace TicTacToe_2._0
         {
             zelle.geklickt = true;
             setzeSpielerInZelle(zelle);
-
             wechselZug();
 
         }

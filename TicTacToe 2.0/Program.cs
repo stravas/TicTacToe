@@ -1,4 +1,14 @@
-﻿using System;
+﻿/**
+ * Programm TicTacToe
+ *
+ * @author Fabio Norbutat
+ * @author Adonis Thaci
+ *
+ * @date 2015-22-12
+ *
+ * @version 2.0
+ * */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

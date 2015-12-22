@@ -94,15 +94,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\trance.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\trance2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\Titlebild.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Properties\titlenbild2.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,14 @@
-﻿using System;
+﻿/**
+ * Programm TicTacToe
+ *
+ * @author Fabio Norbutat
+ * @author Adonis Thaci
+ *
+ * @date 2015-22-12
+ *
+ * @version 2.0
+ * */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,33 +65,25 @@ namespace TicTacToe_2._0
             else if ((matrix[0, 2].Spieler == matrix[1, 1].Spieler) && (matrix[1, 1].Spieler == matrix[2, 0].Spieler) && (matrix[0, 2].Spieler.Id != 0))
                 Gewonnen = true;
 
-
-            /* for (int x = 0; x <= 2; x++)
-           {
-               for (int y = 0; y <= 2; y++)
-               {
-                   if ((Matrix[x, y].Spieler == Matrix[x, y].Spieler) && (Matrix[x, y].Spieler == Matrix[x, y].Spieler)
-                       || (Matrix[y, x].Spieler == Matrix[y, x].Spieler) && (Matrix[y, x].Spieler == Matrix[y, x].Spieler))
-                   {
-                       return ;
-                   }
-
-               }
-           }*/
-
-            //check fuer Gleichstand
-            /*if (count == 9)
-                MessageBox.Show("Draw!");
-            return true;*/
-
-
             return Gewonnen;
         }
 
         public void welcherSpieler(Zelle zelle)
         {
             zelle.geklickt = true;
+            setzeSpielerInZelle(zelle);
 
+            wechselZug();
+
+        }
+
+        private void wechselZug()
+        {
+            Zug = !Zug;
+        }
+
+        private void setzeSpielerInZelle(Zelle zelle)
+        {
             if (Zug)
             {
                 zelle.Spieler = this.SpielerEins;
@@ -95,10 +97,6 @@ namespace TicTacToe_2._0
                 zelle.DefaultPinsel.Color = this.SpielerZwei.ZellenPinsel.Color;
                 zelle.Spieler.Figur = "O";
             }
-
-
-            Zug = !Zug;
-
         }
 
         public string[] rundenAuswertung(Zelle geklickteZelle, Spielfeld spielfeld)
@@ -144,16 +142,16 @@ namespace TicTacToe_2._0
             RückgabeArray[1] = "Unentschieden";
         }
 
-        private string[] hatGewonnen(Zelle zelle, string[] RückgabeArray)
+        private string[] hatGewonnen(Zelle zelle, string[] ErgebnisArray)
         {
             ZugZaehler = 1;
 
-            RückgabeArray[0] = "true";
-            RückgabeArray[1] = "Sieg";
-            RückgabeArray[2] = zelle.Spieler.Name;
+            ErgebnisArray[0] = "true";
+            ErgebnisArray[1] = "Sieg";
+            ErgebnisArray[2] = zelle.Spieler.Name;
             spielErgebnis(zelle.Spieler);
 
-            return RückgabeArray;
+            return ErgebnisArray;
         }
 
         public void vergebeSpielername(string spieler1TextEngabe, string spieler2TextEngabe)

@@ -232,6 +232,9 @@ namespace TicTacToe_2._0
             resultatLabel.Width = this.Width / 2 - resultatLabel.Width / 2 - resultatLabel.Text.Length / 2;
         }
 
-
+        private void aboutMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("TicTacToe Applikation in C#"  + "\n" + "Von Adonis Thaci und Fabio Norbutat" + "\n" + "GSO FIA41 Köln/Cologne");
+        }
     }
 }

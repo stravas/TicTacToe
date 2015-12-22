@@ -22,8 +22,17 @@ namespace TicTacToe_2._0
 {
     class Spielfeld
     {
+        //Hier werden alle 9 Zellen Gespeichert in einem 2 Dimensionalem Array.
+        //Das System ist es die Felder in dem Array Strukturiert wie auf dem Feld zu lagern
+        // 
+        //  |0.0|0.1|0.2|
+        //  |1.0|1.1|1.2|
+        //  |2.0|2.1|2.2|
+        //
+        // Zum Bildlichen Vorstellen die Abbildung oben
         public Zelle[,] Matrix = new Zelle[3,3];
 
+        //Generiert die 9 Zellen Objekten mit den Rectangle in sich
         public Spielfeld()
         {
             this.Matrix[0, 0] = new Zelle();
@@ -39,6 +48,7 @@ namespace TicTacToe_2._0
             this.Matrix[2, 2] = new Zelle();
         }
 
+        //Hier bekommt die Zelle ihre Punkte zur richtigen Positonierung in der View
         private void gebeZelleKoordinaten(Zelle Zelle, int x, int y, int breite ,int hoehe)
         {
             Zelle.Rectangle.X = x;
@@ -47,6 +57,7 @@ namespace TicTacToe_2._0
             Zelle.Rectangle.Width = breite;
         }
 
+        //Berechnet die Optimalen Punkte aller 9 Zellen aus so, das sie immer Proportional ein Rechteck ergeben.
         private Zelle[,] berechneMatrix(int ClientWidth, int ClientHeight)
         {
 
@@ -65,6 +76,7 @@ namespace TicTacToe_2._0
             return Matrix;
         }
 
+        //Diese Funktion wird durch ein Resize event angesprochen von der Benutzeroberfläche(View) so das es sich immer dem Fenster anpasst.
         public void zeichneSpielfeld(Graphics g,  int ClientWidth, int ClientHeight)
         {
             Pen blackPen = new Pen(Color.Black, 8.0F);
@@ -98,6 +110,7 @@ namespace TicTacToe_2._0
 
         }
 
+        //Prüft bei jedem Klick auf das Spielfeld welche Zelle Angeklickt wurde. Wurde die Angklickte Zelle gefunden, so wirde diese übergeben
         public Zelle welcheZelle(Point location)
         {
             foreach (Zelle zelle in this.Matrix)
@@ -110,6 +123,7 @@ namespace TicTacToe_2._0
             return null;
         }
 
+        //Initialsierit Das Spielfeld neu
         public void feldReset()
         {
             this.Matrix[0, 0] = new Zelle();
@@ -125,7 +139,7 @@ namespace TicTacToe_2._0
             this.Matrix[2, 2] = new Zelle();
 
         }
-
+        //Skalliert nach der größe des Fensters die Optimale Schriftgröße
         public float fontGroesseBerechnen(Zelle zelle)
         {
             float ClientWidthFloat = (float)zelle.Rectangle.Width;

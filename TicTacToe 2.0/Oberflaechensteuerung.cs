@@ -35,6 +35,7 @@ namespace TicTacToe_2._0
 
         }
 
+        //Initialsiert alle nötigen Events und Einstellungen der Form
         private void FormLoad(object sender, EventArgs e)
         {
             //Optionen
@@ -53,6 +54,7 @@ namespace TicTacToe_2._0
             this.FormClosing += new FormClosingEventHandler(schliesseForm);
         }
 
+        //Ein Resize Event das bei jeder Größen änderung der Form angesprochen wird. Diese Funktion Zeichnet das Feld optimiert zur aktuellen Form größe neu
         private void ZeichneSpielfeldNeu(object sender, PaintEventArgs e)
         {
             reguliereFontGroesseSpielerZugAnzeige();
@@ -61,6 +63,8 @@ namespace TicTacToe_2._0
             ankerZuSpielfeld();
 
         }
+
+        //Ein Klick event was jedes mal ausgeführt wird wenn auf die Form geklickt wird. Speziell ist hier das nur was Passiert wenn eine Zelle angesprochen wird
         private void MausFormKlick(object sender, MouseEventArgs e)
         {
             string[] auswertungsErgebnis = new string[3];
@@ -74,7 +78,7 @@ namespace TicTacToe_2._0
 
 
         }
-
+        //Ein Button Event das dass Spiel zum Starten bringt.
         private void SpielStartButtonKlick(object sender, EventArgs e)
         {
             Spielsteuerung.vergebeSpielername(Spieler1TextBox.Text, Spieler2TextBox.Text);
@@ -97,12 +101,16 @@ namespace TicTacToe_2._0
 
             wechselZurSpielfläche();
         }
+
+        //Ein klick event das, dass Feld zurücksetzt und ein neues Spiel anleitet
         private void NeueRundeButtonKlick(object sender, EventArgs e)
         {
             this.Spielfeld.feldReset();
             resultatPanel.Visible = false;
             this.Refresh();
         }
+
+        
         private void neuesSpielMenueLeisteKlick(object sender, EventArgs e)
         {
             this.resultatPanel.Visible = false;
@@ -128,6 +136,7 @@ namespace TicTacToe_2._0
                 e.Cancel = true;
         }
 
+        //Verarbeitet die ergebnisse durch die Klicks auf die Felder und gibt ein Runden Beendet Label aus falls es auftritt
         private void verarbeiteRundenAuswertungsErgebnis(string[] SpielDatenArray)
         {
 
@@ -227,6 +236,8 @@ namespace TicTacToe_2._0
             //SpielerZugAnzeigeText
 
         }
+
+        //Setzt das Statistik Board immer 50px Rechts von dem gezeichnetem Spielfeld
         private void zentrierResulatatLabelErgebnisflaeche()
         {
             resultatLabel.Width = this.Width / 2 - resultatLabel.Width / 2 - resultatLabel.Text.Length / 2;

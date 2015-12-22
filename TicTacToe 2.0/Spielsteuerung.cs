@@ -26,6 +26,8 @@ namespace TicTacToe_2._0
         public Spieler SpielerEins;
         public Spieler SpielerZwei;
 
+        //Wird die Spielsteuerung Initialisert so werden mit dem sofort 2 Spieler Objekte erstellt.
+        //Dieser Spieler Objekte bekommen unterschiedliche werte zugewiesen wie ein Farb unterschied oder ungleiche namen.
         public Spielsteuerung()
         {
             SpielerEins = new Spieler();
@@ -39,6 +41,8 @@ namespace TicTacToe_2._0
             SpielerZwei.Name = "Spieler2";
         }
 
+        //Prüft das Matrix-Zellen Arrays ob es eine mögliche kombination von Siegen gibt.  
+        //Hat wer gewonnen, so wid der boolean "Gewonnen" auf true gesetzt und gibt diesen zurück.
         public bool gewinnerPruefung(Zelle[,] matrix)
         {
             bool Gewonnen = false;
@@ -68,6 +72,8 @@ namespace TicTacToe_2._0
             return Gewonnen;
         }
 
+        //Setzt in de Zelle die eigenschaft " geklickt" auf true damit diese object von außen nicht mehr ansprechbar ist und weist
+        // der Zelle einen Spieler zu.
         public void welcherSpieler(Zelle zelle)
         {
             zelle.geklickt = true;
@@ -76,11 +82,14 @@ namespace TicTacToe_2._0
 
         }
 
+        //Ändert den Zug
         private void wechselZug()
         {
             Zug = !Zug;
         }
 
+        //Setzt der Zelle die als Parameter reingeladen wird einen Spieler zu, und ersetzt die Weiße default farbe einer Zelle mit der, des Spielers der Geklickt hat.
+        //Fügt zu der eigenschaft "Spieler" in der Zelle ein Symbol Hinzu was dann angezeigt wird in der View.
         private void setzeSpielerInZelle(Zelle zelle)
         {
             if (Zug)
@@ -133,6 +142,7 @@ namespace TicTacToe_2._0
             return ErgebnisArray;
         }
 
+        //gibt bei einem unentschieden ein unentschieden array raus
         private void istUntentschieden(string[] RückgabeArray)
         {
             ZugZaehler = 1;
@@ -141,6 +151,7 @@ namespace TicTacToe_2._0
             RückgabeArray[1] = "Unentschieden";
         }
 
+        //gibt bei einem Sieg ein Sieg array raus
         private string[] hatGewonnen(Zelle zelle, string[] ErgebnisArray)
         {
             ZugZaehler = 1;
@@ -153,6 +164,8 @@ namespace TicTacToe_2._0
             return ErgebnisArray;
         }
 
+        //Wenn keine werte in die textboxen im startpannel geschrieben werden so behalten die Spieler ihren default namen. Falls doch was geschrieben wird
+        //bekommen sie den inhalt der textboxen
         public void vergebeSpielername(string spieler1TextEngabe, string spieler2TextEngabe)
         {
             if (!string.IsNullOrEmpty(spieler1TextEngabe))
@@ -165,7 +178,7 @@ namespace TicTacToe_2._0
             }
 
         }
-
+        //Erhöht nach einem Sieg die Eigenschafte "Spielsiege" in dem Spieler Objekt um 1
         public void spielErgebnis(Spieler spieler)
         {
 

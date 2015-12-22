@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_2._0
 {
+    //Spieler Model
     class Spieler
     {
         public Spieler()

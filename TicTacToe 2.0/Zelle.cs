@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe_2._0
 {
+    //Zellen Model
     class Zelle
     {
 
@@ -25,9 +26,9 @@ namespace TicTacToe_2._0
         public bool geklickt = false;
         public SolidBrush DefaultPinsel = new SolidBrush(Color.White);
 
+        
         public Zelle()
         {
-
             this.Rectangle = new Rectangle();
             this.Spieler = new Spieler();
 
